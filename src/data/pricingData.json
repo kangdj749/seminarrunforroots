@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "nama": "Trial",
+    "hargaAwal": 0,
+    "periode": "/7 hari",
+    "fitur": [
+      "Akses semua fitur",
+      "Suara bel default",
+      "Tidak perlu aktivasi"
+    ]
+  },
+  {
+    "id": 2,
+    "nama": "1 Bulan",
+    "hargaAwal": 49000,
+    "periode": "/bulan",
+    "fitur": [
+      "Semua fitur premium",
+      "Suara bel & karakter update",
+      "Dukungan teknis chat"
+    ]
+  },
+  {
+    "id": 3,
+    "nama": "3 Bulan",
+    "hargaAwal": 135000,
+    "periode": "/3 bulan",
+    "fitur": [
+      "Semua fitur premium",
+      "Akses suara eksklusif",
+      "Prioritas dukungan teknis"
+    ]
+  },
+  {
+    "id": 4,
+    "nama": "6 Bulan",
+    "hargaAwal": 249000,
+    "periode": "/6 bulan",
+    "fitur": [
+      "Semua fitur premium",
+      "Suara murotal & ceramah",
+      "Remote bantuan prioritas"
+    ]
+  },
+  {
+    "id": 5,
+    "nama": "1 Tahun",
+    "hargaAwal": 449000,
+    "periode": "/tahun",
+    "fitur": [
+      "Semua fitur + sholawat",
+      "Akses semua update suara",
+      "Bebas aktivasi ulang"
+    ]
+  },
+  {
+    "id": 6,
+    "nama": "Lifetime",
+    "hargaAwal": 749000,
+    "periode": "sekali bayar",
+    "fitur": [
+      "Semua fitur",
+      "Support selamanya",
+      "Tidak perlu perpanjangan"
+    ]
+  }
+]
