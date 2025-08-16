@@ -20,17 +20,17 @@ export default function FiturBelCerdasV2() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
             className="flex items-center justify-center"
-          >
-            <div className="relative w-full h-full max-h-[500px] rounded-2xl overflow-hidden shadow-xl border border-gray-200 group">
-              <Image
+            >
+            <div className="relative w-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] rounded-2xl overflow-hidden shadow-xl border border-gray-200 group bg-gray-50 flex items-center justify-center">
+                <Image
                 src="/image/ui-belcerdas.png"
                 alt="BelCerdas"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-contain lg:object-cover p-4 lg:p-0 transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 80vw, 450px"
-              />
+                />
             </div>
-          </motion.div>
+            </motion.div>
 
           {/* Kolom Kanan - Fitur */}
           <motion.div
