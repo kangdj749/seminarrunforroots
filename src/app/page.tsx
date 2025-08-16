@@ -56,6 +56,7 @@ const LandingPage: React.FC = () => {
           <nav className="space-x-4 text-sm md:text-base">
             <a href="#coba_gratis" className="hover:text-blue-600 transition">Coba Gratis</a>
             <a href="#fitur" className="hover:text-blue-600 transition">Fitur</a>
+            <a href="#benefit" className="hover:text-blue-600 transition">Benefit</a>
             <a href="#harga" className="hover:text-blue-600 transition">Harga</a>
             <a href="#kontak" className="hover:text-blue-600 transition">Kontak</a>
           </nav>
@@ -71,6 +72,9 @@ const LandingPage: React.FC = () => {
         <section id="fitur" className="py-20 px-6 sm:px-12 md:px-20 bg-white shadow-inner">
           <div className="max-w-6xl mx-auto" data-aos="fade-up">
             <Features />
+            </div>
+        
+          <div id="benefit" className="max-w-6xl mx-auto" data-aos="fade-up">
             <Benefits />
           </div>
         </section>
