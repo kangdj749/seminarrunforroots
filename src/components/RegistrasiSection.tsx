@@ -114,7 +114,9 @@ export default function RegistrasiSection() {
           ? `Harga: ${formatIDR(discountedPrice)} (diskon 30% dari ${formatIDR(originalPrice)})`
           : "Harga: Gratis / Trial",
         "",
-        "Mohon info selanjutnya, terima kasih.",
+        "Silahkan bisa langsung Join grup untuk dapat link download aplikasi. Terima kasih",
+        "",
+        "https://chat.whatsapp.com/K5Qc1F4k3r82Zdpfq6lk6S?mode=ac_t",
       ].join("\n");
 
       window.location.href = `https://wa.me/6281224128899?text=${encodeURIComponent(msg)}`;
