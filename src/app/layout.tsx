@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BelCerdas – Sistem Bel Otomatis",
+  title: "BelCerdas – Asisten Cerdas Harian Anda",
   description: "Landing page resmi produk BelCerdas",
 };
 
