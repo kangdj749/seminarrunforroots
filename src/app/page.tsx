@@ -14,6 +14,8 @@ import FeatureV2Section from "@/components/FeatureV2Section";
 import Footer from "@/components/Footer";
 import TrialPromo from "@/components/TrialPromo";
 import ContactSection from "@/components/ContactSection";
+import Header from "@/components/Header";
+
 
 interface SheetData {
   [key: string]: { elements: any[] };
@@ -50,18 +52,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen font-sans bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm py-4 border-b border-gray-200">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <h1 className="text-xl md:text-2xl font-bold text-blue-700 tracking-tight">BelCerdas</h1>
-          <nav className="space-x-4 text-sm md:text-base">
-            <a href="#coba_gratis" className="hover:text-blue-600 transition">Coba Gratis</a>
-            <a href="#fitur" className="hover:text-blue-600 transition">Fitur</a>
-            <a href="#benefit" className="hover:text-blue-600 transition">Benefit</a>
-            <a href="#harga" className="hover:text-blue-600 transition">Harga</a>
-            <a href="#kontak" className="hover:text-blue-600 transition">Kontak</a>
-          </nav>
-        </div>
-      </header>
+      <Header/>
 
       <main className="overflow-x-hidden">
         <section id="coba_gratis" >
