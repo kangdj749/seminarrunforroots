@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class", // ✅ FIX: cukup string "class"
   content: [
     "./src/pages/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
@@ -32,7 +32,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"), // buat animasi shadcn
+    require("tailwindcss-animate"), // animasi shadcn/ui
   ],
 }
+
 export default config
