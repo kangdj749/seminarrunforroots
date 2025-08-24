@@ -50,10 +50,10 @@ export default function Header() {
         className="md:hidden bg-white/95 backdrop-blur-sm shadow-md border-t border-gray-200 overflow-hidden"
       >
         <nav className="flex flex-col space-y-3 px-6 py-4 text-sm">
-          <a href="#coba_gratis" className="hover:text-blue-600 transition">Coba Gratis</a>
+          <a href="#daftarsekarang" className="hover:text-blue-600 transition">Daftar Sekarang</a>
           <a href="#layanan" className="hover:text-blue-600 transition">Layanan</a>
-          <a href="#benefit" className="hover:text-blue-600 transition">Benefit</a>
-          <a href="#harga" className="hover:text-blue-600 transition">Harga</a>
+          <a href="#metoda" className="hover:text-blue-600 transition">Metoda</a>
+          <a href="#investasi" className="hover:text-blue-600 transition">Investasi</a>
           <a href="#kontak" className="hover:text-blue-600 transition">Kontak</a>
         </nav>
       </motion.div>
