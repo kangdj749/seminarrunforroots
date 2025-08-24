@@ -11,7 +11,6 @@ import Benefits from "@/components/Benefits";
 import Pricing from "@/components/Pricing";
 import FeatureV2Section from "@/components/FeatureV2Section";
 import Footer from "@/components/Footer";
-import ContactSection from "@/components/ContactSection";
 import Header from "@/components/Header";
 import { CarouselSpacing } from "@/components/Testimonials";
 import { VideoCarousel } from "@/components/Videocarousel";
