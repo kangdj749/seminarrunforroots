@@ -1,39 +1,47 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class", // ✅ FIX: cukup string "class"
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{ts,tsx}",
-    "./src/components/**/*.{ts,tsx}",
-    "./src/app/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./content/**/*.{md,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        brand: {
-          DEFAULT: "#7c3aed", // Ungu utama
-          light: "#a78bfa",   // Ungu muda
-          dark: "#5b21b6",    // Ungu tua
-          accent: "#ec4899",  // Pink aksen
+        // Palet selaras logo (biru/teal/hijau)
+        primary: {
+          50: "#edf3ff",
+          100: "#d8e6ff",
+          200: "#b0caff",
+          300: "#88aeff",
+          400: "#5e92ff",
+          500: "#2563eb", // blue-600 feel
+          600: "#1e50c4",
+          700: "#183e9b",
+          800: "#112c72",
+          900: "#0a1a49"
         },
-        gradientStart: "#6366f1",
-        gradientEnd: "#ec4899",
+        accent: {
+          500: "#0ea5a3", // teal
+          600: "#0a7f7e"
+        },
+        leaf: {
+          500: "#16a34a", // green
+          600: "#12843c"
+        }
       },
-      fontFamily: {
-        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
-      },
-      borderRadius: {
-        xl: "1rem",
-        "2xl": "1.5rem",
+      container: {
+        center: true,
+        padding: "1rem"
       },
       boxShadow: {
-        card: "0 10px 25px -5px rgba(0,0,0,0.05)",
-      },
-    },
+        soft: "0 10px 30px rgba(2, 6, 23, 0.08)"
+      }
+    }
   },
-  plugins: [
-    require("tailwindcss-animate"), // animasi shadcn/ui
-  ],
-}
+  plugins: []
+};
 
-export default config
+export default config;

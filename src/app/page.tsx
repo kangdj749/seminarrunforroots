@@ -15,6 +15,10 @@ import Footer from "@/components/Footer";
 import TrialPromo from "@/components/TrialPromo";
 import ContactSection from "@/components/ContactSection";
 import Header from "@/components/Header";
+import Testimonials from "@/components/sections/testimonials";
+import { CarouselSpacing } from "@/components/Testimonials";
+import { VideoCarousel } from "@/components/Videocarousel";
+import { CallToAction } from "@/components/CalltoAction";
 
 
 interface SheetData {
@@ -55,40 +59,50 @@ const LandingPage: React.FC = () => {
       <Header/>
 
       <main className="overflow-x-hidden">
-        <section id="coba_gratis" >
+        <section id="daftarsekarang" className="py-7 px-6 sm:px-12 md:px-20 bg-white shadow-inner" >
             <Hero/>  
             <FeatureV2Section/>
         </section>
 
-        <section id="fitur" className="py-20 px-6 sm:px-12 md:px-20 bg-white shadow-inner">
+        <section id="layanan" className="py-20 px-6 sm:px-12 md:px-20 bg-white shadow-inner">
           <div className="max-w-6xl mx-auto" data-aos="fade-up">
             <Features />
             </div>
         
-          <div id="benefit" className="max-w-6xl mx-auto" data-aos="fade-up">
+          <div id="metoda" className="max-w-6xl mx-auto" data-aos="fade-up">
             <Benefits />
           </div>
         </section>
 
-        <section id="harga" className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
+        <section id="investasi" className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
           <div className="max-w-6xl mx-auto" data-aos="fade-up">
             <Pricing />
-            <div className="mt-20" data-aos="fade-up" data-aos-delay="300">
-              <FAQSection />
-            </div>
           </div>
         </section>
 
-        <section className="py-20 px-6 sm:px-12 md:px-20 bg-blue-100">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            <TrialPromo />
+        <section id="testimoni" className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
+          <div className="max-w-6xl mx-auto" data-aos="fade-up">
+            <CarouselSpacing />
           </div>
         </section>
+
+        <section className="py-20 px-6 sm:px-12 md:px-20 bg-blue-80">
+          <div className="max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <VideoCarousel />
+          </div>
+        </section>
+
+        <section className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
+          <div className="max-w-6xl mx-auto" data-aos="fade-up">
+            <CallToAction />
+          </div>
+        </section>
+
+        
       </main>
 
       <footer id="kontak" className="bg-blue-900 text-white py-10 px-6 sm:px-12">
         <div className="max-w-6xl mx-auto" data-aos="fade-up">
-          <ContactSection />
           <Footer/>
         </div>
       </footer>

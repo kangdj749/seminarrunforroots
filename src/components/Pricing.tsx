@@ -1,6 +1,32 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
-import pricingData from "../data/pricingData.json";
+
+const pricingData = [
+  {
+    id: 1,
+    nama: "💼 Guru Lokal",
+    hargaAwal: 100000,
+    periode: "/ sesi (60 menit)",
+    fitur: [
+      "Belajar privat dengan guru lokal",
+      "Materi sesuai kebutuhan Anda",
+      "Fokus percakapan nyata",
+    ],
+  },
+  {
+    id: 2,
+    nama: "🌍 Native Speaker (Bule)",
+    hargaAwal: 150000,
+    periode: "/ sesi (60 menit)",
+    fitur: [
+      "Belajar langsung dengan native speaker",
+      "Percakapan real-life & natural",
+      "Pengucapan lebih akurat",
+    ],
+  },
+];
 
 export default function PricingSection() {
   return (
@@ -13,76 +39,64 @@ export default function PricingSection() {
           viewport={{ once: true }}
           className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-900"
         >
-          Pilih Paket BelCerdas
+          Harga Investasi Belajar
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {pricingData.map((paket, index) => {
-            const hargaDiskon = paket.hargaAwal > 0 
-              ? Math.round(paket.hargaAwal * 0.7) 
-              : 0;
-            return (
-              <motion.div
-                key={paket.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className="relative bg-white rounded-2xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {pricingData.map((paket, index) => (
+            <motion.div
+              key={paket.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="relative bg-white rounded-2xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {paket.nama}
+              </h3>
+
+              {/* Harga */}
+              <div className="mb-4">
+                <span className="text-3xl font-bold text-blue-600">
+                  Rp {paket.hargaAwal.toLocaleString("id-ID")}
+                </span>
+                <span className="text-sm text-gray-500 ml-1">
+                  {paket.periode}
+                </span>
+              </div>
+
+              {/* Fitur */}
+              <ul className="flex-1 mb-6 space-y-2 text-gray-700">
+                {paket.fitur.map((f, i) => (
+                  <li key={i} className="flex items-start space-x-2">
+                    <span className="text-blue-500 mt-1">✔</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tombol */}
+              <Link
+                href={`/registrasi?paket=${encodeURIComponent(paket.nama)}`}
+                className="inline-block bg-blue-600 text-white text-center py-3 rounded-xl font-medium hover:bg-blue-700 transition"
               >
-                {/* Badge Diskon */}
-                {paket.hargaAwal > 0 && (
-                  <span className="absolute top-4 right-4 bg-red-500 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
-                    -30%
-                  </span>
-                )}
-
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {paket.nama}
-                </h3>
-
-                {/* Harga */}
-                <div className="mb-4">
-                  {paket.hargaAwal > 0 ? (
-                    <>
-                      <span className="text-gray-400 line-through text-lg block">
-                        Rp {paket.hargaAwal.toLocaleString("id-ID")}
-                      </span>
-                      <span className="text-3xl font-bold text-blue-600">
-                        Rp {hargaDiskon.toLocaleString("id-ID")}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="text-3xl font-bold text-blue-600">
-                      Rp 0
-                    </span>
-                  )}
-                  <span className="text-sm text-gray-500 ml-1">
-                    {paket.periode}
-                  </span>
-                </div>
-
-                {/* Fitur */}
-                <ul className="flex-1 mb-6 space-y-2 text-gray-700">
-                  {paket.fitur.map((f, i) => (
-                    <li key={i} className="flex items-start space-x-2">
-                      <span className="text-blue-500 mt-1">✔</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tombol */}
-                <Link
-                  href={`/registrasi?paket=${encodeURIComponent(paket.nama)}`}
-                  className="inline-block bg-blue-600 text-white text-center py-3 rounded-xl font-medium hover:bg-blue-700 transition"
-                >
-                  Pilih Paket
-                </Link>
-              </motion.div>
-            );
-          })}
+                Pilih Paket
+              </Link>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Catatan */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center text-gray-600 mt-10 max-w-2xl mx-auto"
+        >
+          📌 Belajar privat dengan kualitas internasional, tanpa biaya yang memberatkan.
+        </motion.p>
       </div>
     </section>
   );

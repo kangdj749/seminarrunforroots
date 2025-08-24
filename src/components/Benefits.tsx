@@ -5,34 +5,30 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: "🎯",
-    title: "Instalasi Super Mudah",
-    description: "Tanpa perlu software tambahan. Jalankan langsung dari PC atau Raspberry Pi."
+    title: "Personalized Lessons",
+    description: "Materi menyesuaikan kebutuhan Anda."
   },
   {
-    icon: "🎧",
-    title: "Support MP3 & WAV Panjang",
-    description: "Putar audio berdurasi panjang tanpa takut terpotong. Cocok untuk adzan, murotal, sholawat atau lagu nasional."
+    icon: "📅",
+    title: "Flexible Schedule",
+    description: "Pilih waktu yang sesuai dengan aktivitas Anda."
   },
   {
-    icon: "🧠",
-    title: "Pengulangan Audio hingga 10x",
-    description: "Efektif untuk memperkuat hapalan Al-Qur’an dan kebiasaan positif."
+    icon: "💬",
+    title: "Interactive & Real Conversations",
+    description: "Fokus pada percakapan nyata, bukan hanya teori."
   },
   {
-    icon: "📆",
-    title: "Jadwal Libur Otomatis",
-    description: "Salin jadwal ke 1–3 bulan ke depan. Hari libur otomatis dilewati."
+    icon: "📊",
+    title: "Progress Monitoring",
+    description: "Pantau perkembangan Anda atau anak Anda setiap sesi."
   },
   {
-    icon: "📢",
-    title: "Tombol Pengumuman Langsung",
-    description: "Sekali klik, nada bel muncul otomatis sebelum pengumuman dimulai."
+    icon: "👩‍🏫",
+    title: "Professional & Friendly Tutors",
+    description: "Guru berpengalaman yang peduli dengan hasil."
   },
-  {
-    icon: "🔁",
-    title: "Mode Jadwal Fleksibel",
-    description: "Normal, Ramadhan – ganti mode sesuai kebutuhan tanpa ribet."
-  }
+  
 ];
 
 const WhyBelCerdasSection: React.FC = () => {
@@ -45,7 +41,7 @@ const WhyBelCerdasSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-blue-900 mb-4"
         >
-          Kenapa BelCerdas Lebih Cerdas?
+          Metode Belajar – The Happy Way
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -53,7 +49,7 @@ const WhyBelCerdasSection: React.FC = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-gray-700 text-lg mb-12"
         >
-          Kami tak hanya bikin bel berbunyi, tapi memudahkan hidup Anda.
+          Kami percaya, belajar bahasa tidak harus kaku. Metode kami adalah kombinasi antara fun & effective.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

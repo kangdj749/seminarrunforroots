@@ -1,31 +1,45 @@
 import React from "react";
-import { Vortex } from "@/components/ui/shadcn-io/vortex";
 import Link from "next/link";
+import { BackgroundBeamsWithCollision } from "@/components/ui/shadcn-io/background-beams-with-collision";
+
+
 const Example = () => {
   return (
-    <div className="w-[calc(100%-4rem)] mx-auto rounded-md h-[30rem] overflow-hidden">
-      <Vortex
-        backgroundColor="black"
-        className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
-      >
-        <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
-          BelCerdas
-        </h2>
-        <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center">
-          Asisten Cerdas Harian Anda
-        </p>
-        <p className="text-white text-sm md:text-1xl max-w-xl mt-4 text-center">
-        Dari bel masuk hingga pesan moral harian, BelCerdas hadir sebagai pengingat kebaikan — di sekolah, kantor, rumah, atau di mana saja.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
-            <Link href="/registrasi?paket=Trial">
-            Coba Gratis
-            </Link>
-          </button>
-          </div>
-      </Vortex>
+    <BackgroundBeamsWithCollision>
+  <section className="w-full bg-transparent py-10 md:py-14">
+    <div className="flex flex-col items-center justify-center text-center px-4 md:px-8 mx-auto max-w-4xl">
+      
+      {/* Judul */}
+      <h1 className="text-[#1E3A8A] text-3xl md:text-5xl py-5 font-extrabold leading-snug">
+        Happy English Course <span className="text-[#FACC15]">– HEC</span>
+      </h1>
+
+      {/* Subjudul Quote */}
+      <p className="text-slate-500 text-sm md:text-lg mt-3">
+        ✨ “Bahasa adalah jembatan menuju dunia. Kami hadir untuk membangun jembatan itu bersama Anda.”
+      </p>
+
+      {/* Narasi */}
+      <p className="text-slate-500 text-xs md:text-base mt-4 leading-relaxed">
+      Lebih dari sekadar kursus, <span className="font-semibold text-[#FACC15]">HEC</span> menghadirkan pengalaman belajar eksklusif  
+      yang dirancang untuk keluarga dan profesional berkelas.
+       </p>
+
+      {/* CTA */}
+      <div className="mt-6 text-white">
+        <Link
+          href="/registrasi?paket=💼%20Guru%20Lokal"
+          className="px-6 py-3 bg-[#1e3a8a] hover:bg-[#22d3ee] transition duration-200 rounded-xl text-white font-semibold shadow-md"
+        >
+          Mulai Belajar Sekarang
+        </Link>
+      </div>
     </div>
+  </section>
+</BackgroundBeamsWithCollision>
+
+
+
   );
 };
 export default Example;
