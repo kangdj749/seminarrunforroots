@@ -6,17 +6,17 @@ import { motion } from "framer-motion";
 const features = [
   {
     title: "Private English Lessons (Tatap Muka)",
-    description: "Atur jadwal bel harian dan spesial seperti Ramadhan secara mudah.",
+    description: "Belajar langsung dengan tutor di Bandung atau Bali. Personal, fokus, dan nyaman.",
     icon: "👩‍🏫",
   },
   {
     title: "Online Private English Lessons",
-    description: "Sampaikan pengumuman langsung ke speaker sekolah secara fleksibel.",
+    description: "Belajar dari mana saja dengan tutor lokal berpengalaman, fleksibel mengikuti jadwal Anda.",
     icon: "💻",
   },
   {
     title: "Online Private English Lessons with a Native Speaker",
-    description: "Putar pesan inspiratif dan pembinaan karakter otomatis setiap hari.",
+    description: "Belajar langsung dengan penutur asli/ Bule (native speaker). Tingkatkan kepercayaan diri berbicara dengan aksen natural dan ungkapan sehari-hari yang autentik.",
     icon: "🌍",
   },
   {
@@ -26,7 +26,7 @@ const features = [
   },
   {
     title: "Online Daily Conversation Bahasa Indonesia Course for Foreigners",
-    description: "Putar pesan inspiratif dan pembinaan karakter otomatis setiap hari.",
+    description: "Light, flexible, and practical daily conversation class for those who will be vacationing in Bali.",
     icon: "🗣️",
   },
   
