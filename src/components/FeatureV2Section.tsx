@@ -19,7 +19,7 @@ export default function FiturBelCerdasV2() {
         </h3>
 
         {/* List Fitur */} 
-        <ul className="text-slate-500 text-xs md:text-base mt-4 leading-relaxed text-center">
+        <ul className="text-slate-500 text-xl md:text-base mt-4 leading-relaxed text-center">
           {[
             "Anak pintar grammar, tapi takut berbicara bahasa Inggris",
             "Orang dewasa ingin mahir bahasa Inggris, tapi kesibukan membuat belajar jadi sulit",
