@@ -25,7 +25,7 @@ export default function Testimoni() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-[var(--color-primary)] mb-4">
-            Kata Mereka
+            Testimoni
           </h2>
           <p className="text-[var(--color-text-main)] text-base md:text-lg">
             Cerita manis dari para pelanggan setia Rindu Bolu Bandung.

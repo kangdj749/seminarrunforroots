@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 const navLinks = [
   { name: "Beranda", href: "#hero" },
@@ -20,12 +21,23 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="backdrop-blur-xl bg-white/70 border-b border-white/40 shadow-sm">
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-          {/* Logo / Brand */}
+          {/* Logo + Brand */}
           <a
             href="#hero"
-            className="text-lg md:text-xl font-bold text-[var(--color-primary)]"
+            className="flex items-center gap-3 group"
           >
-            Rindu Bolu Bandung
+            <div className="relative w-9 h-9 md:w-10 md:h-10">
+              <Image
+                src="/logo-rbb.png"
+                alt="Logo Rindu Bolu Bandung"
+                fill
+                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                priority
+              />
+            </div>
+            <span className="text-lg md:text-xl font-bold text-[var(--color-primary)]">
+              Rindu Bolu Bandung
+            </span>
           </a>
 
           {/* Desktop Menu */}
@@ -46,6 +58,7 @@ export default function Navbar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-[var(--color-primary)]"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
