@@ -4,10 +4,22 @@
 /* ========== Base reset ringan ========== */
 :root {
   color-scheme: light;
+
+  /* Warna brand untuk Rindu Bolu Bandung */
+  --color-bg-main: #fdf6f0;   /* cream lembut */
+  --color-bg-accent: #f3e5d8; /* beige */
+  --color-text-main: #4b2e1e; /* cokelat pekat */
+  --color-primary: #6b4226;   /* cokelat tua (button/heading) */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root { color-scheme: dark; }
+  :root {
+    color-scheme: dark;
+    --color-bg-main: #2a1a12;
+    --color-bg-accent: #3a2418;
+    --color-text-main: #f3e5d8;
+    --color-primary: #d4a373;
+  }
 }
 
 html, body {
@@ -17,13 +29,12 @@ html, body {
 }
 
 body {
-  /* Pastikan font smoothing rapi */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Warna dasar aman untuk light/dark (ikut color-scheme) */
-  background: Canvas;
-  color: CanvasText;
+  /* Background utama */
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
 }
 
 /* Media default responsif */

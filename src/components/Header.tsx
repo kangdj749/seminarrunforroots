@@ -1,67 +1,82 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X } from "lucide-react"
+
+const navLinks = [
+  { name: "Beranda", href: "#hero" },
+  { name: "Tentang", href: "#tentang" },
+  { name: "Produk", href: "#produk" },
+  { name: "Menu", href: "#menu" },
+  { name: "Testimoni", href: "#testimoni" },
+  { name: "Kontak", href: "#kontak" },
+]
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-        <header className="bg-white/80 backdrop-blur-md sticky top-0 z-40 shadow-sm py-1 border-b border-gray-200">
-  <div className="container mx-auto px-3 flex items-center justify-between h-14">
-    
-    {/* Logo di kiri */}
-    <div className="flex items-center">
-      <Image
-        src="/logo_hec.png"
-        alt="Happy English Course"
-        width={40} height={40}
-        className="h-8 w-auto"
-      />
-    </div>
+    <header className="fixed top-0 left-0 w-full z-50">
+      <div className="backdrop-blur-xl bg-white/70 border-b border-white/40 shadow-sm">
+        <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+          {/* Logo / Brand */}
+          <a
+            href="#hero"
+            className="text-lg md:text-xl font-bold text-[var(--color-primary)]"
+          >
+            Rindu Bolu Bandung
+          </a>
 
-    {/* Desktop Menu */}
-    <nav className="hidden md:flex space-x-5 text-sm md:text-base">
-      <a href="#daftarsekarang" className="hover:text-blue-600 transition">Daftar Sekarang</a>
-      <a href="#layanan" className="hover:text-blue-600 transition">Layanan</a>
-      <a href="#metoda" className="hover:text-blue-600 transition">Metoda Belajar</a>
-      <a href="#investasi" className="hover:text-blue-600 transition">Investasi</a>
-      <a href="#kontak" className="hover:text-blue-600 transition">Kontak</a>
-    </nav>
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="relative text-[var(--color-text-main)] hover:text-[var(--color-primary)] transition"
+              >
+                {link.name}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
 
-    {/* Mobile Button */}
-    <button
-      className="md:hidden p-2 text-blue-700"
-      onClick={() => setIsOpen(!isOpen)}
-    >
-      {isOpen ? <X size={24} /> : <Menu size={24} />}
-    </button>
-  </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-[var(--color-primary)]"
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
+      </div>
 
-  {/* Mobile Menu with Animation */}
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ height: "auto", opacity: 1 }}
-        exit={{ height: 0, opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden bg-white/95 backdrop-blur-sm shadow-md border-t border-gray-200 overflow-hidden"
-      >
-        <nav className="flex flex-col space-y-3 px-6 py-4 text-sm">
-          <a href="#daftarsekarang" className="hover:text-blue-600 transition">Daftar Sekarang</a>
-          <a href="#layanan" className="hover:text-blue-600 transition">Layanan</a>
-          <a href="#metoda" className="hover:text-blue-600 transition">Metoda</a>
-          <a href="#investasi" className="hover:text-blue-600 transition">Investasi</a>
-          <a href="#kontak" className="hover:text-blue-600 transition">Kontak</a>
-        </nav>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</header>
-
-
-
-  );
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/90 backdrop-blur-xl border-b border-white/40 shadow-lg"
+          >
+            <nav className="flex flex-col p-6 space-y-4">
+              {navLinks.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-[var(--color-text-main)] hover:text-[var(--color-primary)] transition text-base font-medium"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  )
 }

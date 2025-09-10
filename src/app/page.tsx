@@ -5,16 +5,16 @@ import { useRouter } from "next/navigation";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Benefits from "@/components/Benefits";
-import Pricing from "@/components/Pricing";
-import FeatureV2Section from "@/components/FeatureV2Section";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import { CarouselSpacing } from "@/components/Testimonials";
-import { VideoCarousel } from "@/components/Videocarousel";
-import { CallToAction } from "@/components/CalltoAction";
+import Navbar from "@/components/Header"
+import Hero from "@/components/Hero"
+import TentangKami from "@/components/TentangKami"
+import ProdukKami from "@/components/ProdukKami"
+import Testimoni from "@/components/Testimoni"
+import KenapaHarus from "@/components/KenapaHarus"
+import Kontak from "@/components/Kontak"
+import Footer from "@/components/Footer"
+import HybridWhatsAppCTA from "@/components/HybridWhatsAppCTA"
+import MenuHarga from "@/components/MenuHarga";
 
 
 interface SheetData {
@@ -51,58 +51,51 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
-      <Header/>
+    <main className="relative">
+          {/* Navbar */}
+          <Navbar />
+    
+          {/* Hero */}
+          <section id="hero">
+            <Hero />
+          </section>
+    
+          {/* Tentang Kami */}
+          <section id="tentang">
+            <TentangKami />
+          </section>
+    
+          {/* Kenapa Harus */}
+          <section id="kenapa">
+            <KenapaHarus />
+          </section>
 
-      <main className="overflow-x-hidden">
-        <section id="daftarsekarang" className="py-7 px-6 sm:px-12 md:px-20 bg-white shadow-inner" >
-            <Hero/>  
-            <FeatureV2Section/>
-        </section>
+          {/* Produk Kami */}
+          <section id="produk">
+            <ProdukKami />
+          </section>
 
-        <section id="layanan" className="py-20 px-6 sm:px-12 md:px-20 bg-white shadow-inner">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up">
-            <Features />
-            </div>
-        
-          <div id="metoda" className="max-w-6xl mx-auto" data-aos="fade-up">
-            <Benefits />
-          </div>
-        </section>
+          {/* Menu Harga */}
+          <section id="menu">
+            <MenuHarga />
+          </section>
 
-        <section id="investasi" className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up">
-            <Pricing />
-          </div>
-        </section>
+          {/* Testimoni */}
+          <section id="testimoni">
+            <Testimoni />
+          </section>
+    
+          {/* Kontak */}
+          <section id="kontak">
+            <Kontak />
+          </section>
+    
+          {/* Footer */}
+          <Footer />
+          {/* WhatsApp CTA hybrid */}
+          <HybridWhatsAppCTA />
 
-        <section id="testimoni" className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up">
-            <CarouselSpacing />
-          </div>
-        </section>
-
-        <section className="py-20 px-6 sm:px-12 md:px-20 bg-blue-80">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            <VideoCarousel />
-          </div>
-        </section>
-
-        <section className="py-20 px-6 sm:px-12 md:px-20 bg-blue-50">
-          <div className="max-w-6xl mx-auto" data-aos="fade-up">
-            <CallToAction />
-          </div>
-        </section>
-
-        
-      </main>
-
-      <footer id="kontak" className="bg-blue-900 text-white py-10 px-6 sm:px-12">
-        <div className="max-w-6xl mx-auto" data-aos="fade-up">
-          <Footer/>
-        </div>
-      </footer>
-    </div>
+        </main>
   );
 };
 
