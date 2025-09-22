@@ -26,7 +26,7 @@ export default function Navbar() {
           <a href="#hero" className="flex items-center gap-3 group">
             <div className="relative w-9 h-9 md:w-10 md:h-10">
               <Image
-                src="/logo-nusa.png"
+                src="/logo-nusa-home-care.png"
                 alt="Logo Nusa Home Care"
                 fill
                 className="object-contain transition-transform duration-300 group-hover:scale-110"
