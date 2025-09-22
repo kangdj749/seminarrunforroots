@@ -11,8 +11,7 @@ const navLinks = [
   { name: "Layanan", href: "#layanan" },
   { name: "Biaya", href: "#biaya" },
   { name: "Testimoni", href: "#testimoni" },
-  { name: "Faq", href: "#faq" },
-  
+  { name: "FAQ", href: "#faq" },
 ]
 
 export default function Navbar() {
@@ -20,7 +19,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-sans">
-      <div className="backdrop-blur-xl bg-white/70 border-b border-gray-200/40 shadow-sm">
+      <div className="backdrop-blur-xl bg-white/80 border-b border-green-100 shadow-sm">
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-16">
           {/* Logo + Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
@@ -33,7 +32,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="text-lg md:text-xl font-bold text-[var(--color-primary)]">
+            <span className="text-lg md:text-xl font-bold text-green-700">
               Nusa Home Care
             </span>
           </a>
@@ -44,10 +43,10 @@ export default function Navbar() {
               <a
                 key={i}
                 href={link.href}
-                className="relative text-[var(--color-text-main)] hover:text-[var(--color-primary)] transition group"
+                className="relative text-gray-700 hover:text-green-700 transition group"
               >
                 {link.name}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-green-600 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
@@ -55,7 +54,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-[var(--color-primary)]"
+            className="md:hidden text-green-700"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -71,7 +70,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-gray-200/40 shadow-lg"
+            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-green-100 shadow-lg"
           >
             <nav className="flex flex-col p-6 space-y-4">
               {navLinks.map((link, i) => (
@@ -79,7 +78,7 @@ export default function Navbar() {
                   key={i}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-[var(--color-text-main)] hover:text-[var(--color-primary)] transition text-base font-medium"
+                  className="text-gray-700 hover:text-green-700 transition text-base font-medium"
                 >
                   {link.name}
                 </a>
