@@ -2,14 +2,13 @@
 @import "tailwindcss";
 
 /* ========== Base reset ringan ========== */
-:root {
-  color-scheme: light;
 
-  /* Warna brand untuk Rindu Bolu Bandung */
-  --color-bg-main: #fdf6f0;   /* cream lembut */
-  --color-bg-accent: #f3e5d8; /* beige */
-  --color-text-main: #4b2e1e; /* cokelat pekat */
-  --color-primary: #6b4226;   /* cokelat tua (button/heading) */
+/* Warna brand untuk Nusa Home Care */
+:root {
+  --color-primary: #1E9C73;
+  --color-accent: #2FB9A8;
+  --color-text-main: #1A2E35;
+  --color-bg-main: #F9FAFB;
 }
 
 @media (prefers-color-scheme: dark) {

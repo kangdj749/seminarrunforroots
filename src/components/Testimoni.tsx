@@ -1,20 +1,25 @@
+"use client"
+
 import { motion } from "framer-motion"
 import { MessageCircle } from "lucide-react"
 
 const testimonis = [
   {
-    teks: "Bolu selembut ini belum pernah saya coba, benar-benar bikin kangen Bandung!",
-    nama: "Wiwin, Tangerang",
+    teks: "Alhamdulillah, ibu saya lebih tenang dirawat di rumah. Perawat Nusa Home Care sangat sabar dan ramah.",
+    nama: "Ibu Lina, Bandung",
   },
   {
-    teks: "Rindu Bolu Bandung selalu jadi oleh-oleh wajib kalau pulang ke rumah.",
-    nama: "Ai, Tasik Malaya",
+    teks: "Anak saya sering kambuh asmanya, tapi sejak ada layanan nebulizer ke rumah, saya tidak panik lagi.",
+    nama: "Pak Yusuf, Cimahi",
   },
 ]
 
 export default function Testimoni() {
   return (
-    <section className="py-16 bg-gradient-to-b from-[var(--color-bg-accent)] via-[var(--color-bg-main)] to-[var(--color-bg-accent)]">
+    <section
+      id="testimoni"
+      className="py-16 bg-gradient-to-b from-green-50 via-white to-green-50"
+    >
       <div className="container mx-auto px-6 md:px-12">
         {/* Judul */}
         <motion.div
@@ -24,11 +29,11 @@ export default function Testimoni() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-[var(--color-primary)] mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
             Testimoni
           </h2>
-          <p className="text-[var(--color-text-main)] text-base md:text-lg">
-            Cerita manis dari para pelanggan setia Rindu Bolu Bandung.
+          <p className="text-gray-600 text-base md:text-lg">
+            Cerita nyata dari keluarga yang sudah merasakan layanan Nusa Home Care.
           </p>
         </motion.div>
 
@@ -41,15 +46,15 @@ export default function Testimoni() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl shadow-lg p-6 md:p-8 flex flex-col space-y-4 hover:shadow-2xl hover:-translate-y-1 transition-all"
+              className="bg-white border border-green-100 rounded-2xl shadow-sm hover:shadow-md p-6 md:p-8 flex flex-col space-y-4 transition-all hover:-translate-y-1"
             >
               <div className="flex items-start gap-3">
-                <MessageCircle className="w-6 h-6 text-[var(--color-primary)] mt-1" />
-                <p className="text-[var(--color-text-main)] text-base md:text-lg leading-relaxed">
+                <MessageCircle className="w-6 h-6 text-green-600 mt-1" />
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed">
                   “{item.teks}”
                 </p>
               </div>
-              <span className="text-sm md:text-base font-semibold text-[var(--color-primary)] self-end">
+              <span className="text-sm md:text-base font-semibold text-green-700 self-end">
                 – {item.nama}
               </span>
             </motion.div>

@@ -8,13 +8,13 @@ import "aos/dist/aos.css";
 import Navbar from "@/components/Header"
 import Hero from "@/components/Hero"
 import TentangKami from "@/components/TentangKami"
-import ProdukKami from "@/components/ProdukKami"
 import Testimoni from "@/components/Testimoni"
-import KenapaHarus from "@/components/KenapaHarus"
-import Kontak from "@/components/Kontak"
 import Footer from "@/components/Footer"
 import HybridWhatsAppCTA from "@/components/HybridWhatsAppCTA"
-import MenuHarga from "@/components/MenuHarga";
+import Layanan from "@/components/Layanan";
+import Biaya from "@/components/BiayaLayanan";
+import FAQ from "@/components/FAQ";
+import CTA from "@/components/CTA";
 
 
 interface SheetData {
@@ -65,19 +65,14 @@ const LandingPage: React.FC = () => {
             <TentangKami />
           </section>
     
-          {/* Kenapa Harus */}
-          <section id="kenapa">
-            <KenapaHarus />
+          {/* Layanan */}
+          <section id="layanan">
+            <Layanan />
           </section>
 
           {/* Produk Kami */}
-          <section id="produk">
-            <ProdukKami />
-          </section>
-
-          {/* Menu Harga */}
-          <section id="menu">
-            <MenuHarga />
+          <section id="biaya">
+            <Biaya />
           </section>
 
           {/* Testimoni */}
@@ -85,11 +80,18 @@ const LandingPage: React.FC = () => {
             <Testimoni />
           </section>
     
-          {/* Kontak */}
-          <section id="kontak">
-            <Kontak />
+
+          {/* FAQ */}
+          <section id="faq">
+            <FAQ />
           </section>
-    
+
+        {/* CTA */}
+          <section>
+            <CTA />
+          </section>
+         
+         
           {/* Footer */}
           <Footer />
           {/* WhatsApp CTA hybrid */}

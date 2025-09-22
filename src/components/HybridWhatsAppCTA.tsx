@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function HybridWhatsAppCTA() {
-  const whatsappNumber = "6289677078084" // nomor WA tanpa 0
+  const whatsappNumber = "62882000015029" // nomor WA tanpa 0
   const defaultMessage = encodeURIComponent("Halo, saya ingin pesan Bolu Rindu Bandung 🍰")
 
   return (

@@ -3,7 +3,10 @@ import { Heart } from "lucide-react"
 
 export default function TentangKami() {
   return (
-    <section className="py-16 bg-gradient-to-b from-[var(--color-bg-main)] via-[var(--color-bg-accent)] to-[var(--color-bg-main)]">
+    <section
+      id="tentang"
+      className="py-16 bg-gradient-to-b from-[var(--color-bg-main)] via-[var(--color-bg-accent)] to-[var(--color-bg-main)]"
+    >
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -24,17 +27,24 @@ export default function TentangKami() {
             </div>
 
             {/* Content */}
-            <p className="text-base md:text-lg text-[var(--color-text-main)] max-w-2xl mx-auto leading-relaxed space-y-4">
-              <span className="block mb-4">
-                Rindu Bolu Bandung lahir dari sebuah kerinduan: menghadirkan cita rasa otentik Bandung yang lembut, manis, dan selalu meninggalkan kesan mendalam.
-              </span>
-              <span className="block mb-4">
-                Kami percaya, oleh-oleh bukan sekadar makanan—tapi bahasa cinta untuk keluarga, sahabat, dan kolega.
-              </span>
-              <span className="block">
-                👉 Dengan bahan pilihan & resep turun-temurun, kami menjaga kualitas di setiap potongan bolu.
-              </span>
-            </p>
+            <div className="text-base md:text-lg text-[var(--color-text-main)] max-w-3xl mx-auto leading-relaxed space-y-6">
+              <p>
+                <strong>Nusa Home Care</strong> adalah layanan kesehatan Islami yang menghadirkan perawatan medis profesional langsung ke rumah Anda. 
+                Terinspirasi dari nilai <em>caring</em> dalam Islam, kami percaya bahwa merawat bukan hanya soal fisik, 
+                tapi juga menyentuh aspek psikologis dan spiritual.
+              </p>
+
+              <p>
+                Dengan tenaga medis berizin dan berpengalaman, kami siap memberikan layanan lengkap mulai dari perawatan luka, 
+                dokter dan perawat ke rumah, fisioterapi, perawatan ibu & bayi, hingga layanan darurat 24 jam. 
+                Semua dengan sentuhan Islami, penuh kepedulian, dan harga transparan.
+              </p>
+
+              <p>
+                Kami hadir untuk keluarga yang ingin sehat dengan nyaman, tanpa antre panjang di rumah sakit. 
+                Bersama Nusa Home Care, Anda akan merasakan aman, higienis, dan hangatnya perawatan di rumah sendiri.
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -5,11 +5,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function Hero() {
-  const whatsappNumber = "6289677078084" // tanpa 0
-  const defaultMessage = encodeURIComponent("Halo, saya ingin pesan Bolu Rindu Bandung 🍰")
-
   return (
-    <section className="relative flex items-center justify-center bg-[var(--color-bg-main)] py-16 md:py-24">
+    <section className="relative flex items-center justify-center bg-green-50 py-16 md:py-24">
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Text */}
@@ -19,43 +16,42 @@ export default function Hero() {
           transition={{ duration: 0.7 }}
           className="text-center lg:text-left space-y-6"
         >
-          <span className="text-sm md:text-base tracking-widest uppercase text-[var(--color-primary)] font-semibold">
-            Oleh-oleh Khas Bandung
+          <span className="text-sm md:text-base tracking-widest uppercase text-green-600 font-semibold">
+            Home Care Islami & Profesional
           </span>
 
-          <h1 className="font-bold leading-tight text-[clamp(2rem,6vw,3.5rem)] text-[var(--color-primary)]">
-            Rindu yang Lembut,  
-            <span className="block text-[var(--color-text-main)]">
-              Oleh-oleh Asli Bandung
+          <h1 className="font-bold leading-tight text-[clamp(2rem,6vw,3.5rem)] text-green-700">
+            Saatnya Sehat dengan Nyaman,  
+            <span className="block text-gray-800">
+              Tanpa Perlu ke Rumah Sakit!
             </span>
           </h1>
 
-          <p className="text-base md:text-lg text-[var(--color-text-main)] max-w-xl mx-auto lg:mx-0">
-            Setiap gigitan bolu kami adalah kerinduan yang terjawab.  
-            Tekstur lembut, rasa khas Bandung, dan selalu bikin ingin kembali.
+          <p className="text-base md:text-lg text-gray-600 max-w-xl mx-auto lg:mx-0">
+            Kesehatan keluarga adalah segalanya. Tapi antre panjang di rumah sakit sering bikin lelah, 
+            rawan infeksi, dan boros waktu.  
+            Dengan <span className="font-semibold text-green-700">Nusa Home Care</span>, 
+            Anda bisa mendapatkan perawatan kesehatan profesional langsung di rumah.  
+            👉 Aman, higienis, personal, dan tetap hangat bersama keluarga.
           </p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button
               asChild
-              className="bg-[var(--color-primary)] text-white rounded-2xl px-8 py-4 text-lg font-semibold shadow-md hover:scale-105 hover:shadow-lg transition"
+              className="bg-green-600 text-white rounded-2xl px-8 py-4 text-lg font-semibold shadow-md hover:scale-105 hover:shadow-lg transition"
             >
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${defaultMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Pesan Sekarang
+              <a href="/registrasi">
+                Konsultasi Gratis
               </a>
             </Button>
 
             <Button
               asChild
               variant="outline"
-              className="border-[var(--color-primary)] text-[var(--color-primary)] rounded-2xl px-8 py-4 text-lg font-semibold hover:bg-[var(--color-bg-accent)] transition"
+              className="border-green-600 text-green-600 rounded-2xl px-8 py-4 text-lg font-semibold hover:bg-green-100 transition"
             >
-              <a href="#menu">Lihat Menu</a>
+              <a href="#layanan">Lihat Layanan</a>
             </Button>
           </div>
         </motion.div>
@@ -69,8 +65,8 @@ export default function Hero() {
         >
           <div className="relative w-full max-w-md h-full">
             <Image
-              src="/bolu.jpeg"
-              alt="Rindu Bolu Bandung"
+              src="/nusa-home-care.png"
+              alt="Nusa Home Care - Perawatan di Rumah"
               fill
               className="object-cover drop-shadow-2xl rounded-[2rem]"
               priority
