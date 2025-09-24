@@ -11,10 +11,13 @@ import TentangKami from "@/components/TentangKami"
 import Testimoni from "@/components/Testimoni"
 import Footer from "@/components/Footer"
 import HybridWhatsAppCTA from "@/components/HybridWhatsAppCTA"
-import Layanan from "@/components/Layanan";
-import Biaya from "@/components/BiayaLayanan";
-import FAQ from "@/components/FAQ";
-import CTA from "@/components/CTA";
+import PricingSection from "@/components/TiketSection";
+import TimelineSection from "@/components/TimelineSection";
+import RundownSection from "@/components/RundownSection";
+import WhyJoinSection from "@/components/WhyJoinSection";
+import RealisasiSection from "@/components/RealisasiSection";
+import OrganizerSection from "@/components/OrganizerSection";
+import SponsorSection from "@/components/SponsorSection";
 
 
 interface SheetData {
@@ -64,33 +67,44 @@ const LandingPage: React.FC = () => {
           <section id="tentang">
             <TentangKami />
           </section>
-    
-          {/* Layanan */}
-          <section id="layanan">
-            <Layanan />
-          </section>
 
-          {/* Produk Kami */}
-          <section id="biaya">
-            <Biaya />
+          {/* Organizer */}
+          <section id="organizer">
+            <OrganizerSection />
+          </section>
+    
+          {/* Time Line */}
+          <section id="timeline">
+            <TimelineSection />
           </section>
 
           {/* Testimoni */}
-          <section id="testimoni">
-            <Testimoni />
+          <section id="rundown">
+            <RundownSection />
           </section>
+
+          {/* Tiket */}
+          <section id="biaya">
+            <PricingSection />
+          </section>
+
+          
     
 
-          {/* FAQ */}
-          <section id="faq">
-            <FAQ />
+          {/* Kenapa */}
+          <section id="kenapa">
+            <WhyJoinSection />
           </section>
 
-        {/* CTA */}
+        {/* Realisasi  */}
           <section>
-            <CTA />
+            <RealisasiSection />
           </section>
          
+         {/* Sponsor  */}
+          <section>
+            <SponsorSection />
+          </section>
          
           {/* Footer */}
           <Footer />

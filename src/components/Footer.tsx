@@ -1,32 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, Instagram } from "lucide-react"
+import { Mail, Phone, Instagram, Facebook } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-green-700 text-white pt-12 pb-6">
+    <footer className="bg-green-700 text-white pt-16 pb-8">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            <h3 className="text-2xl font-bold">Nusa Home Care</h3>
-            <p className="text-green-100 text-sm md:text-base italic">
-              “Care Islami, Sentuhan Hati”
-            </p>
-            <p className="text-green-100 text-sm leading-relaxed max-w-xs">
-              Layanan kesehatan Islami yang menghadirkan perawatan profesional
-              langsung ke rumah Anda dengan penuh kepedulian.
+            <h3 className="text-2xl font-bold">🌱 Run for Roots 2025</h3>
+            <p className="text-green-100 text-sm md:text-base leading-relaxed max-w-sm">
+              Fun Run sehat & seru, sekaligus aksi nyata menanam pohon dan
+              mangrove untuk bumi lebih hijau.
             </p>
           </motion.div>
 
-          {/* Kontak */}
+          {/* Kontak + Sosmed */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -34,52 +31,60 @@ export default function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-xl font-semibold mb-2">Kontak Kami</h4>
-            <div className="flex items-center gap-3 text-green-100">
-              <MapPin className="w-5 h-5" />
-              <span>Bandung & Sekitarnya</span>
-            </div>
-            <div className="flex items-center gap-3 text-green-100">
-              <Phone className="w-5 h-5" />
-              <span>08 8200 0015 029</span>
-            </div>
+            <h4 className="text-xl font-semibold mb-3">Kontak Panitia</h4>
+
             <div className="flex items-center gap-3 text-green-100">
               <Mail className="w-5 h-5" />
-              <span>fatriyani87@gmail.com</span>
+              <a href="mailto:gdhuafa@gmail.com" className="hover:underline">
+                gdhuafa@gmail.com
+              </a>
             </div>
-            <div className="flex items-center gap-3 text-green-100">
-              <Instagram className="w-5 h-5" />
-              <span>@pacissulehah</span>
-            </div>
-          </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
-            className="space-y-3"
-          >
-            <h4 className="text-xl font-semibold mb-2">Menu Cepat</h4>
-            <ul className="space-y-2 text-green-100 text-sm md:text-base">
-              <li><a href="#hero" className="hover:underline">Beranda</a></li>
-              <li><a href="#tentang" className="hover:underline">Tentang Kami</a></li>
-              <li><a href="#layanan" className="hover:underline">Layanan</a></li>
-              <li><a href="#harga" className="hover:underline">Biaya Layanan</a></li>
-              <li><a href="#testimoni" className="hover:underline">Testimoni</a></li>
-              <li><a href="#faq" className="hover:underline">FAQ</a></li>
-              <li><a href="#cta" className="hover:underline">Hubungi Kami</a></li>
-            </ul>
+            <div className="flex items-center gap-3 text-green-100">
+              <Phone className="w-5 h-5" />
+              <a
+                href="https://wa.me/6281322817712"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                +62 813-2281-7712 (WhatsApp)
+              </a>
+            </div>
+
+            <div className="flex gap-4 mt-4">
+              <a
+                href="https://instagram.com/grahadhuafa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a
+                href="https://facebook.com/gdi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Facebook className="w-6 h-6" />
+              </a>
+            </div>
           </motion.div>
+        </div>
+
+        {/* Hashtags */}
+        <div className="text-center mb-8">
+          <p className="text-green-100 text-sm">Hashtag Resmi:</p>
+          <p className="font-semibold text-green-50">
+            #RunForRoots2025 &nbsp; #LariUntukBumi &nbsp; #FunRunBandung
+          </p>
         </div>
 
         {/* Bottom */}
         <div className="border-t border-green-600 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-green-100">
-          <p>© {new Date().getFullYear()} Nusa Home Care. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">
-            Made with 💚 in Bandung
-          </p>
+          <p>© {new Date().getFullYear()} Run for Roots. All rights reserved.</p>
+          <p className="mt-2 md:mt-0">Made with 💚 in Bandung</p>
         </div>
       </div>
     </footer>

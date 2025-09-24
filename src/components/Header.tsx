@@ -7,11 +7,13 @@ import Image from "next/image"
 
 const navLinks = [
   { name: "Beranda", href: "#hero" },
-  { name: "Tentang Kami", href: "#tentang" },
-  { name: "Layanan", href: "#layanan" },
+  { name: "Tentang Event", href: "#tentang" },
+  { name: "Timeline", href: "#timeline" },
+  { name: "Bentuk Kegiatan", href: "#rundown" },
   { name: "Biaya", href: "#biaya" },
-  { name: "Testimoni", href: "#testimoni" },
-  { name: "FAQ", href: "#faq" },
+  { name: "Kenapa Harus Ikut", href: "#kenapa" },
+  { name: "Realisasi", href: "#realisasi" },
+  
 ]
 
 export default function Navbar() {
@@ -19,21 +21,23 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-sans">
+      {/* Navbar Wrapper */}
       <div className="backdrop-blur-xl bg-white/80 border-b border-green-100 shadow-sm">
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+          
           {/* Logo + Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
             <div className="relative w-9 h-9 md:w-10 md:h-10">
               <Image
-                src="/logo-nusa-home-care.png"
-                alt="Logo Nusa Home Care"
+                src="/RUN_FOR_ROOTS_LOGO_GREEN.png"
+                alt="Logo Run for Roots 2025"
                 fill
                 className="object-contain transition-transform duration-300 group-hover:scale-110"
                 priority
               />
             </div>
             <span className="text-lg md:text-xl font-bold text-green-700">
-              Nusa Home Care
+              Run for Roots 2025
             </span>
           </a>
 

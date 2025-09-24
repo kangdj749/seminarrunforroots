@@ -1,42 +1,30 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
-
-// ====== Layanan Nusa Home Care ======
-const SERVICES = [
-  "Perawatan Luka Kompleks",
-  "Infus Booster & Terapi Vitamin",
-  "Dokter & Perawat ke Rumah",
-  "Nebulizer / Terapi Uap",
-  "Perawatan Ibu & Bayi",
-  "Fisioterapi & Rehabilitasi Medis",
-  "Akupuntur & Bekam Islami",
-  "Ambulans 24 Jam",
-] as const;
+import { useState } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2 } from "lucide-react"
+import { toast } from "sonner"
 
 // ====== Validasi Zod ======
 const formSchema = z.object({
   nama: z.string().min(2, "Nama minimal 2 karakter"),
-  nowa: z
-    .string()
-    .min(8, "Nomor WA terlalu pendek")
-    .regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
-  layanan: z.string().min(2, "Wajib pilih layanan"),
-  catatan: z.string().optional(),
-});
-type FormValues = z.infer<typeof formSchema>;
+  email: z.string().email("Format email tidak valid"),
+  nohp: z.string().min(8, "Nomor HP terlalu pendek").regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
+  lari: z.enum(["2K", "5K", "10K"]),
+  jersey: z.string().min(1, "Wajib pilih ukuran jersey"),
+  pembayaran: z.string().min(1, "Wajib pilih metode pembayaran"),
+})
+type FormValues = z.infer<typeof formSchema>
 
 // ====== Ganti URL sesuai WebApp GAS kamu ======
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyHLtvtwSkt1DfOAcWZTGCpFdIiUNEwvwRlkLhyocXo6lNbMfmF0LcK6N1WWfIzyhz/exec"; // ganti dengan link WebApp GAS
-const WHATSAPP_ADMIN = "62882000015029"; // WA admin (tanpa 0)
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxImpoFR8GhxARL-MWZMlXXUxYuSSDGYL_EnMuCN_K6X3nd7pdRMkPuI2-7kqDhbjOX/exec"
+const WHATSAPP_ADMIN = "6281322817712" // WA panitia
 
 export default function RegistrasiSection() {
-  const [submitting, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false)
 
   const {
     register,
@@ -44,82 +32,62 @@ export default function RegistrasiSection() {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      nama: "",
-      nowa: "",
-      layanan: "",
-      catatan: "",
-    },
     mode: "onBlur",
-  });
+  })
 
-  const handleSubmitForm = async (data: FormValues) => {
-    if (submitting) return;
-    setSubmitting(true);
+  const handleSubmitForm: SubmitHandler<FormValues> = async (data) => {
+    if (submitting) return
+    setSubmitting(true)
 
     try {
       // 1) Simpan ke Google Sheets
       const res = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          nama: data.nama,
-          nowa: data.nowa,
-          layanan: data.layanan,
-          catatan: data.catatan || "",
-        }),
-      });
+        body: new URLSearchParams(data as any),
+      })
 
-      if (!res.ok) throw new Error("Gagal simpan ke Google Sheets");
+      if (!res.ok) throw new Error("Gagal simpan ke Google Sheets")
 
       // 2) success toast (sonner)
       toast.success("Registrasi berhasil ✅", {
         description: "Anda akan diarahkan ke WhatsApp...",
-      });
+      })
 
-      // 3) Redirect ke WhatsApp setelah jeda singkat
+      // 3) Redirect ke WhatsApp
       setTimeout(() => {
         const msg = [
-          "Halo Admin, saya ingin daftar layanan Nusa Home Care 🌿",
-          "",
+          "Halo Panitia Run for Roots 2025 🌱, saya ingin mendaftar:",
           `Nama: ${data.nama}`,
-          `No WA: ${data.nowa}`,
-          `Layanan: ${data.layanan}`,
-          data.catatan ? `Catatan: ${data.catatan}` : "",
-        ].join("\n");
+          `Email: ${data.email}`,
+          `No HP: ${data.nohp}`,
+          `Kategori Lari: ${data.lari}`,
+          `Ukuran Jersey: ${data.jersey}`,
+          `Metode Pembayaran: ${data.pembayaran}`,
+        ].join("\n")
 
-        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(
-          msg
-        )}`;
-      }, 1500);
+        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(msg)}`
+      }, 1500)
     } catch (err) {
-      console.error(err);
+      console.error(err)
       toast.error("Registrasi Gagal ❌", {
         description: "Terjadi kesalahan saat mengirim data. Coba lagi ya 🙏",
-      });
+      })
     } finally {
-      setSubmitting(false);
+      setSubmitting(false)
     }
-  };
+  }
 
   return (
-    <section
-      id="form-registrasi"
-      className="py-16 px-4 bg-gradient-to-b from-green-50 via-white to-green-50"
-    >
-      <div className="w-full max-w-lg mx-auto">
-        <div className="bg-white rounded-2xl shadow-lg border border-green-100 p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700 text-center">
-            Form Registrasi
-          </h2>
-          <p className="text-sm text-gray-600 text-center mt-1">
-            Lengkapi data berikut untuk konsultasi gratis & pesan layanan.
+    <section id="registrasi" className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50">
+      <div className="w-full max-w-md  mx-auto">
+        <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
+          <h2 className="text-3xl font-bold text-green-700 text-center">Form Registrasi Peserta</h2>
+          <p className="text-sm text-gray-600 text-center mt-2">
+            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu akan diarahkan ke WhatsApp panitia untuk konfirmasi & pembayaran.
           </p>
 
-          <form
-            onSubmit={handleSubmit(handleSubmitForm)}
-            className="mt-6 space-y-5"
-          >
+          <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-8 space-y-6">
             <FormInput
               label="Nama Lengkap"
               register={register("nama")}
@@ -128,47 +96,40 @@ export default function RegistrasiSection() {
             />
 
             <FormInput
-              label="No WhatsApp"
-              register={register("nowa")}
-              error={errors.nowa?.message}
+              label="Email"
+              type="email"
+              register={register("email")}
+              error={errors.email?.message}
+              placeholder="cth: email@gmail.com"
+            />
+
+            <FormInput
+              label="No HP / WhatsApp"
+              register={register("nohp")}
+              error={errors.nohp?.message}
               placeholder="cth: 08123456789"
             />
 
-            {/* Select Layanan */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Pilih Layanan
-              </label>
-              <select
-                {...register("layanan")}
-                className="w-full rounded-xl border border-green-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-500 bg-white"
-              >
-                <option value="">-- Pilih Layanan --</option>
-                {SERVICES.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-              {errors.layanan && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.layanan.message}
-                </p>
-              )}
-            </div>
+            <FormSelect
+              label="Kategori Lari"
+              register={register("lari")}
+              error={errors.lari?.message}
+              options={["2K", "5K", "10K"]}
+            />
 
-            {/* Catatan */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Catatan (opsional)
-              </label>
-              <textarea
-                {...register("catatan")}
-                rows={3}
-                placeholder="cth: Jadwal kunjungan sore hari"
-                className="w-full rounded-xl border border-green-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-500 bg-white"
-              />
-            </div>
+            <FormSelect
+              label="Ukuran Jersey"
+              register={register("jersey")}
+              error={errors.jersey?.message}
+              options={["S", "M", "L", "XL", "XXL"]}
+            />
+
+            <FormSelect
+              label="Metode Pembayaran"
+              register={register("pembayaran")}
+              error={errors.pembayaran?.message}
+              options={["Transfer Bank", "E-Wallet (OVO/Gopay/Dana)", "Cash Onsite"]}
+            />
 
             <button
               type="submit"
@@ -188,28 +149,14 @@ export default function RegistrasiSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 // ========= Helper Components =========
-function FormInput({
-  label,
-  register,
-  error,
-  type = "text",
-  placeholder,
-}: {
-  label: string;
-  register: any;
-  error?: string;
-  type?: string;
-  placeholder?: string;
-}) {
+function FormInput({ label, register, error, type = "text", placeholder }: any) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label}
-      </label>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       <input
         type={type}
         {...register}
@@ -218,5 +165,25 @@ function FormInput({
       />
       {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
-  );
+  )
+}
+
+function FormSelect({ label, register, error, options }: any) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <select
+        {...register}
+        className="w-full rounded-xl border border-green-200 px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-500 bg-white"
+      >
+        <option value="">-- Pilih {label} --</option>
+        {options.map((opt: string) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+    </div>
+  )
 }

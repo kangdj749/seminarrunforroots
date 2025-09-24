@@ -1,0 +1,54 @@
+"use client"
+
+import { motion } from "framer-motion"
+import Image from "next/image"
+
+const sponsors = [
+  { name: "Sponsor A", logo: "/logo-laz-gdi.png" },
+  { name: "Sponsor B", logo: "/NBL Png Green.png" },
+  { name: "Sponsor C", logo: "/logo-laz-gdi.png" },
+  { name: "Sponsor D", logo: "/NBL Png Green.png" },
+  { name: "Sponsor E", logo: "/logo-laz-gdi.png" },
+]
+
+export default function SponsorSection() {
+  return (
+    <section className="py-16 bg-gradient-to-b from-green-50 via-white to-green-50">
+      <div className="container mx-auto px-6 md:px-12 text-center">
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-2xl md:text-3xl font-bold text-green-700 mb-12"
+        >
+          Didukung oleh Mitra & Sponsor
+        </motion.h2>
+
+        {/* Logo Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center"
+        >
+          {sponsors.map((s, i) => (
+            <div
+              key={i}
+              className="relative w-full h-16 grayscale hover:grayscale-0 hover:scale-105 transition duration-300 flex items-center justify-center"
+            >
+              <Image
+                src={s.logo}
+                alt={s.name}
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
