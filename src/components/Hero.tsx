@@ -2,19 +2,27 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
 export default function Hero() {
-  const searchParams = useSearchParams()
-  const fundriser = searchParams.get("fundriser")
+  const [registrasiLink, setRegistrasiLink] = useState("/registrasi")
 
-  // Simpan ke localStorage kalau ada fundriser di URL
   useEffect(() => {
-    if (fundriser) {
-      localStorage.setItem("fundriser", fundriser)
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      const fundriserFromLink = urlParams.get("fundriser")
+
+      if (fundriserFromLink) {
+        localStorage.setItem("fundriser", fundriserFromLink)
+        setRegistrasiLink(`/registrasi?fundriser=${encodeURIComponent(fundriserFromLink)}`)
+      } else {
+        const stored = localStorage.getItem("fundriser")
+        if (stored) {
+          setRegistrasiLink(`/registrasi?fundriser=${encodeURIComponent(stored)}`)
+        }
+      }
     }
-  }, [fundriser])
+  }, [])
 
   return (
     <section className="relative h-[90vh] w-full flex items-center justify-center">
@@ -41,8 +49,8 @@ export default function Hero() {
         </h1>
 
         <p className="text-base md:text-lg text-green-100/90 max-w-2xl mx-auto leading-relaxed">
-          Ayo ikut charity fun run yang bukan cuma bikin badan sehat, 
-          tapi juga bikin bumi kita kembali hijau.  
+          Ayo ikut charity fun run yang bukan cuma bikin badan sehat,
+          tapi juga bikin bumi kita kembali hijau.
           <span className="block font-semibold text-green-200 mt-2">
             Setiap langkahmu = kontribusi untuk penanaman 5.000 mangrove & pohon di Jawa Barat.
           </span>
@@ -54,7 +62,7 @@ export default function Hero() {
             asChild
             className="bg-green-500 hover:bg-green-400 text-white rounded-2xl px-8 py-4 text-lg font-semibold shadow-lg hover:scale-105 transition"
           >
-            <a href="/registrasi">👉 Daftar Sekarang</a>
+            <a href={registrasiLink}>👉 Daftar Sekarang</a>
           </Button>
         </div>
       </motion.div>
