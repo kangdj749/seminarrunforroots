@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -27,7 +27,16 @@ const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyepCFd9Chfse9obYsuMxcdFYzoLR4KFEAH2SSvd0SQGildOO2kYxTX_j2IIc7nZ6s/exec"
 const WHATSAPP_ADMIN = "6281322817712" // WA panitia
 
-export default function RegistrasiSection() {
+// 🔹 Bungkus dengan Suspense supaya aman di Vercel
+export default function RegistrasiSectionWrapper() {
+  return (
+    <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>
+      <RegistrasiSection />
+    </Suspense>
+  )
+}
+
+function RegistrasiSection() {
   const [submitting, setSubmitting] = useState(false)
   const [activeFundriser, setActiveFundriser] = useState("Tanpa Fundriser")
 
@@ -91,7 +100,9 @@ export default function RegistrasiSection() {
           data.fundriser ? `Fundriser: ${data.fundriser}` : "",
         ].join("\n")
 
-        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(msg)}`
+        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(
+          msg
+        )}`
       }, 1500)
     } catch (err) {
       console.error(err)
