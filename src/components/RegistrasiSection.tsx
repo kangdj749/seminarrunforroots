@@ -6,13 +6,15 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
-import { useSearchParams } from "next/navigation"
 
 // ====== Validasi Zod ======
 const formSchema = z.object({
   nama: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
-  nohp: z.string().min(8, "Nomor HP terlalu pendek").regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
+  nohp: z
+    .string()
+    .min(8, "Nomor HP terlalu pendek")
+    .regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
   lari: z.enum(["2K", "5K", "10K"]),
   jersey: z.string().min(1, "Wajib pilih ukuran jersey"),
   pembayaran: z.string().min(1, "Wajib pilih metode pembayaran"),
@@ -29,8 +31,6 @@ export default function RegistrasiSection() {
   const [submitting, setSubmitting] = useState(false)
   const [activeFundriser, setActiveFundriser] = useState("Tanpa Fundriser")
 
-  const searchParams = useSearchParams()
-
   const {
     register,
     handleSubmit,
@@ -45,7 +45,8 @@ export default function RegistrasiSection() {
   // ✅ Ambil fundriser dari query/localStorage hanya di client
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const fundriserFromLink = searchParams?.get("fundriser")
+      const urlParams = new URLSearchParams(window.location.search)
+      const fundriserFromLink = urlParams.get("fundriser")
       const stored = localStorage.getItem("fundriser")
       const finalFundriser = fundriserFromLink || stored || "Tanpa Fundriser"
 
@@ -56,7 +57,7 @@ export default function RegistrasiSection() {
         localStorage.setItem("fundriser", fundriserFromLink)
       }
     }
-  }, [searchParams, setValue])
+  }, [setValue])
 
   const handleSubmitForm: SubmitHandler<FormValues> = async (data) => {
     if (submitting) return
@@ -103,12 +104,18 @@ export default function RegistrasiSection() {
   }
 
   return (
-    <section id="registrasi" className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50">
+    <section
+      id="registrasi"
+      className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50"
+    >
       <div className="w-full max-w-md mx-auto">
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
-          <h2 className="text-3xl font-bold text-green-700 text-center">Form Registrasi Peserta</h2>
+          <h2 className="text-3xl font-bold text-green-700 text-center">
+            Form Registrasi Peserta
+          </h2>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu akan diarahkan ke WhatsApp panitia.
+            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu
+            akan diarahkan ke WhatsApp panitia.
           </p>
 
           {/* ✅ Preview Fundriser */}
