@@ -3,15 +3,18 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useSearchParams } from "next/navigation"
+import { useEffect } from "react"
 
 export default function Hero() {
   const searchParams = useSearchParams()
   const fundriser = searchParams.get("fundriser")
 
-  // Buat link registrasi sesuai ada/tidaknya fundriser
-  const registrasiLink = fundriser
-    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
-    : "/registrasi"
+  // Simpan ke localStorage kalau ada fundriser di URL
+  useEffect(() => {
+    if (fundriser) {
+      localStorage.setItem("fundriser", fundriser)
+    }
+  }, [fundriser])
 
   return (
     <section className="relative h-[90vh] w-full flex items-center justify-center">
@@ -22,7 +25,6 @@ export default function Hero() {
           alt="Run for Roots 2025 - Fun Run Background"
           className="w-full h-full object-cover"
         />
-        {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-green-900/60 via-green-800/40 to-green-900/70" />
       </div>
 
@@ -52,7 +54,7 @@ export default function Hero() {
             asChild
             className="bg-green-500 hover:bg-green-400 text-white rounded-2xl px-8 py-4 text-lg font-semibold shadow-lg hover:scale-105 transition"
           >
-            <a href={registrasiLink}>👉 Daftar Sekarang</a>
+            <a href="/registrasi">👉 Daftar Sekarang</a>
           </Button>
         </div>
       </motion.div>

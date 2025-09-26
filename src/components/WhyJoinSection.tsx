@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { HeartPulse, Leaf, Users, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import confetti from "canvas-confetti"
-import { useSearchParams } from "next/navigation"
 
 export default function WhyJoinSection() {
   const reasons = [
@@ -25,14 +24,6 @@ export default function WhyJoinSection() {
       text: "Experience unik yang bakal jadi cerita seru bareng teman & keluarga.",
     },
   ]
-
-  const searchParams = useSearchParams()
-  const fundriser = searchParams.get("fundriser")
-
-  // Buat link registrasi sesuai ada/tidaknya fundriser
-  const registrasiLink = fundriser
-    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
-    : "/registrasi"
 
   const handleConfetti = () => {
     confetti({
@@ -104,7 +95,7 @@ export default function WhyJoinSection() {
             onClick={handleConfetti}
             className="bg-white text-green-700 font-bold rounded-xl px-8 py-4 hover:scale-105 hover:bg-green-50 transition"
           >
-            <a href={registrasiLink}>Daftar Sekarang</a>
+            <a href="/registrasi">Daftar Sekarang</a>
           </Button>
         </motion.div>
       </div>

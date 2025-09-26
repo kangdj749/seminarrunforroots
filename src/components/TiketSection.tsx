@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { useSearchParams } from "next/navigation"
 
 // Komponen Countdown Early Bird
 function EarlyBirdCountdown() {
@@ -81,14 +80,6 @@ export default function PricingSection() {
     "Nomor dada (BIB)",
   ]
 
-  const searchParams = useSearchParams()
-  const fundriser = searchParams.get("fundriser")
-
-  // Buat link registrasi sesuai ada/tidaknya fundriser
-  const registrasiLink = fundriser
-    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
-    : "/registrasi"
-
   return (
     <section id="pricing" className="relative bg-green-50 py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -162,7 +153,7 @@ export default function PricingSection() {
                     ? "bg-green-600 hover:bg-green-500 text-white"
                     : "bg-green-500 hover:bg-green-400 text-white"}`}
               >
-                <a href={registrasiLink}>Daftar Sekarang</a>
+                <a href="/registrasi">Daftar Sekarang</a>
               </Button>
             </motion.div>
           ))}
