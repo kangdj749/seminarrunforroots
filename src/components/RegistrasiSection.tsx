@@ -28,9 +28,8 @@ const WHATSAPP_ADMIN = "6281322817712" // WA panitia
 export default function RegistrasiSection() {
   const [submitting, setSubmitting] = useState(false)
   const [activeFundriser, setActiveFundriser] = useState("Tanpa Fundriser")
-  const searchParams = useSearchParams()
-  const fundriserFromLink = searchParams.get("fundriser")
 
+  const searchParams = useSearchParams()
   const {
     register,
     handleSubmit,
@@ -39,20 +38,24 @@ export default function RegistrasiSection() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
+    defaultValues: { fundriser: "Tanpa Fundriser" },
   })
 
-  // Tentukan fundriser dari URL atau localStorage
+  // ✅ Pastikan aman di Vercel (hanya jalan di client)
   useEffect(() => {
-    const stored = localStorage.getItem("fundriser")
-    const finalFundriser = fundriserFromLink || stored || "Tanpa Fundriser"
+    if (typeof window !== "undefined") {
+      const fundriserFromLink = searchParams.get("fundriser")
+      const stored = localStorage.getItem("fundriser")
+      const finalFundriser = fundriserFromLink || stored || "Tanpa Fundriser"
 
-    setValue("fundriser", finalFundriser)
-    setActiveFundriser(finalFundriser)
+      setActiveFundriser(finalFundriser)
+      setValue("fundriser", finalFundriser)
 
-    if (fundriserFromLink) {
-      localStorage.setItem("fundriser", fundriserFromLink)
+      if (fundriserFromLink) {
+        localStorage.setItem("fundriser", fundriserFromLink)
+      }
     }
-  }, [fundriserFromLink, setValue])
+  }, [searchParams, setValue])
 
   const handleSubmitForm: SubmitHandler<FormValues> = async (data) => {
     if (submitting) return
@@ -99,20 +102,15 @@ export default function RegistrasiSection() {
   }
 
   return (
-    <section
-      id="registrasi"
-      className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50"
-    >
+    <section id="registrasi" className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50">
       <div className="w-full max-w-md mx-auto">
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
-          <h2 className="text-3xl font-bold text-green-700 text-center">
-            Form Registrasi Peserta
-          </h2>
+          <h2 className="text-3xl font-bold text-green-700 text-center">Form Registrasi Peserta</h2>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu akan diarahkan ke WhatsApp panitia untuk konfirmasi & pembayaran.
+            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu akan diarahkan ke WhatsApp panitia.
           </p>
 
-          {/* Preview Fundriser */}
+          {/* ✅ Preview Fundriser */}
           <div className="mt-4 text-center bg-green-50 border border-green-200 text-green-700 rounded-xl py-2 px-3 text-sm font-medium">
             Kamu daftar lewat <span className="font-bold">{activeFundriser}</span>
           </div>

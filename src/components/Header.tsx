@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
-import { useSearchParams } from "next/navigation"
 
 const navLinks = [
   { name: "Beranda", href: "#hero" },
@@ -14,21 +13,11 @@ const navLinks = [
   { name: "Biaya", href: "#biaya" },
   { name: "Kenapa Harus Ikut", href: "#kenapa" },
   { name: "Realisasi", href: "#realisasi" },
- 
+  
 ]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const searchParams = useSearchParams()
-  const fundriser = searchParams.get("fundriser")
-
-  // helper buat bikin link selalu include fundriser (kalau ada)
-  const getLink = (href: string) => {
-    if (fundriser) {
-      return `/?fundriser=${fundriser}${href}`
-    }
-    return href
-  }
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-sans">
@@ -37,7 +26,7 @@ export default function Navbar() {
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between h-16">
           
           {/* Logo + Brand */}
-          <a href={getLink("#hero")} className="flex items-center gap-3 group">
+          <a href="#hero" className="flex items-center gap-3 group">
             <div className="relative w-9 h-9 md:w-10 md:h-10">
               <Image
                 src="/RUN_FOR_ROOTS_LOGO_GREEN.png"
@@ -57,7 +46,7 @@ export default function Navbar() {
             {navLinks.map((link, i) => (
               <a
                 key={i}
-                href={getLink(link.href)}
+                href={link.href}
                 className="relative text-gray-700 hover:text-green-700 transition group"
               >
                 {link.name}
@@ -91,7 +80,7 @@ export default function Navbar() {
               {navLinks.map((link, i) => (
                 <a
                   key={i}
-                  href={getLink(link.href)}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="text-gray-700 hover:text-green-700 transition text-base font-medium"
                 >
