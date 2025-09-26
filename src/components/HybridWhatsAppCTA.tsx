@@ -1,14 +1,35 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function HybridWhatsAppCTA() {
   const whatsappNumber = "6281322817712" // nomor WA panitia
-  const defaultMessage = encodeURIComponent(
-    "Halo panitia Run for Roots 2025 🌱, saya mau daftar / tanya info lebih lanjut tentang event Fun Run."
-  )
+  const [waLink, setWaLink] = useState("")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      const fundriserFromLink = urlParams.get("fundriser")
+      const stored = localStorage.getItem("fundriser")
+      const finalFundriser = fundriserFromLink || stored || "Tanpa Fundriser"
+
+      if (fundriserFromLink) {
+        localStorage.setItem("fundriser", fundriserFromLink)
+      }
+
+      const defaultMessage = [
+        "Halo panitia Run for Roots 2025 🌱, saya mau daftar / tanya info lebih lanjut tentang event Fun Run.",
+        finalFundriser ? `\n\n(Daftar lewat Fundriser: ${finalFundriser})` : "",
+      ].join(" ")
+
+      setWaLink(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`)
+    }
+  }, [])
+
+  if (!waLink) return null // biar aman pas SSR
 
   return (
     <>
@@ -27,11 +48,7 @@ export default function HybridWhatsAppCTA() {
             asChild
             className="bg-white text-green-700 font-semibold rounded-xl px-4 py-2 hover:bg-green-100 transition"
           >
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${defaultMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={waLink} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
           </Button>
@@ -43,7 +60,7 @@ export default function HybridWhatsAppCTA() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.7, type: "spring" }}
-        href={`https://wa.me/${whatsappNumber}?text=${defaultMessage}`}
+        href={waLink}
         target="_blank"
         rel="noopener noreferrer"
         className="hidden md:flex fixed bottom-6 right-6 z-50"
