@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { useSearchParams } from "next/navigation"
 
 // ====== Validasi Zod ======
 const formSchema = z.object({
@@ -15,25 +16,37 @@ const formSchema = z.object({
   lari: z.enum(["2K", "5K", "10K"]),
   jersey: z.string().min(1, "Wajib pilih ukuran jersey"),
   pembayaran: z.string().min(1, "Wajib pilih metode pembayaran"),
+  fundriser: z.string().optional(), // hidden field
 })
 type FormValues = z.infer<typeof formSchema>
 
 // ====== Ganti URL sesuai WebApp GAS kamu ======
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxImpoFR8GhxARL-MWZMlXXUxYuSSDGYL_EnMuCN_K6X3nd7pdRMkPuI2-7kqDhbjOX/exec"
+  "https://script.google.com/macros/s/AKfycbyepCFd9Chfse9obYsuMxcdFYzoLR4KFEAH2SSvd0SQGildOO2kYxTX_j2IIc7nZ6s/exec"
 const WHATSAPP_ADMIN = "6281322817712" // WA panitia
 
 export default function RegistrasiSection() {
   const [submitting, setSubmitting] = useState(false)
+  const searchParams = useSearchParams()
+  const fundriserFromLink = searchParams.get("fundriser") || ""
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
+    defaultValues: { fundriser: fundriserFromLink },
   })
+
+  // Set fundriser otomatis dari URL
+  useEffect(() => {
+    if (fundriserFromLink) {
+      setValue("fundriser", fundriserFromLink)
+    }
+  }, [fundriserFromLink, setValue])
 
   const handleSubmitForm: SubmitHandler<FormValues> = async (data) => {
     if (submitting) return
@@ -64,6 +77,7 @@ export default function RegistrasiSection() {
           `Kategori Lari: ${data.lari}`,
           `Ukuran Jersey: ${data.jersey}`,
           `Metode Pembayaran: ${data.pembayaran}`,
+          data.fundriser ? `Fundriser: ${data.fundriser}` : "",
         ].join("\n")
 
         window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(msg)}`
@@ -80,7 +94,7 @@ export default function RegistrasiSection() {
 
   return (
     <section id="registrasi" className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50">
-      <div className="w-full max-w-md  mx-auto">
+      <div className="w-full max-w-md mx-auto">
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
           <h2 className="text-3xl font-bold text-green-700 text-center">Form Registrasi Peserta</h2>
           <p className="text-sm text-gray-600 text-center mt-2">
@@ -130,6 +144,9 @@ export default function RegistrasiSection() {
               error={errors.pembayaran?.message}
               options={["Transfer Bank", "E-Wallet (OVO/Gopay/Dana)", "Cash Onsite"]}
             />
+
+            {/* Hidden field fundriser */}
+            <input type="hidden" {...register("fundriser")} />
 
             <button
               type="submit"

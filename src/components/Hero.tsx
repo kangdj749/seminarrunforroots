@@ -2,8 +2,17 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { useSearchParams } from "next/navigation"
 
 export default function Hero() {
+  const searchParams = useSearchParams()
+  const fundriser = searchParams.get("fundriser")
+
+  // Buat link registrasi sesuai ada/tidaknya fundriser
+  const registrasiLink = fundriser
+    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
+    : "/registrasi"
+
   return (
     <section className="relative h-[90vh] w-full flex items-center justify-center">
       {/* Background Image */}
@@ -43,7 +52,7 @@ export default function Hero() {
             asChild
             className="bg-green-500 hover:bg-green-400 text-white rounded-2xl px-8 py-4 text-lg font-semibold shadow-lg hover:scale-105 transition"
           >
-            <a href="/registrasi">👉 Daftar Sekarang</a>
+            <a href={registrasiLink}>👉 Daftar Sekarang</a>
           </Button>
         </div>
       </motion.div>

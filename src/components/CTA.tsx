@@ -3,12 +3,21 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { PhoneCall, ClipboardList } from "lucide-react"
+import { useSearchParams } from "next/navigation"
 
 export default function CTA() {
   const whatsappNumber = "62882000015029" // tanpa 0
   const defaultMessage = encodeURIComponent(
     "Halo, saya ingin konsultasi dan pesan layanan Nusa Home Care 🌿"
   )
+
+  const searchParams = useSearchParams()
+  const fundriser = searchParams.get("fundriser")
+
+  // Buat link registrasi sesuai ada/tidaknya fundriser
+  const registrasiLink = fundriser
+    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
+    : "/registrasi"
 
   return (
     <section
@@ -47,7 +56,7 @@ export default function CTA() {
             asChild
             className="bg-white-50 text-green-700 hover:bg-green-50 rounded-xl px-8 py-4 text-lg font-semibold shadow-md hover:shadow-lg transition"
           >
-            <a href="/registrasi">
+            <a href={registrasiLink}>
               <ClipboardList className="w-5 h-5 mr-2 inline-block" />
               Daftar Sekarang
             </a>
