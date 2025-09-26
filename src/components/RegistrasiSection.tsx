@@ -30,6 +30,7 @@ export default function RegistrasiSection() {
   const [activeFundriser, setActiveFundriser] = useState("Tanpa Fundriser")
 
   const searchParams = useSearchParams()
+
   const {
     register,
     handleSubmit,
@@ -41,10 +42,10 @@ export default function RegistrasiSection() {
     defaultValues: { fundriser: "Tanpa Fundriser" },
   })
 
-  // ✅ Pastikan aman di Vercel (hanya jalan di client)
+  // ✅ Ambil fundriser dari query/localStorage hanya di client
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const fundriserFromLink = searchParams.get("fundriser")
+      const fundriserFromLink = searchParams?.get("fundriser")
       const stored = localStorage.getItem("fundriser")
       const finalFundriser = fundriserFromLink || stored || "Tanpa Fundriser"
 
@@ -169,8 +170,7 @@ export default function RegistrasiSection() {
             >
               {submitting ? (
                 <>
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                  Mengirim...
+                  <Loader2 className="h-5 w-5 animate-spin" /> Mengirim...
                 </>
               ) : (
                 "Daftar Sekarang"
