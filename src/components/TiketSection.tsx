@@ -159,8 +159,8 @@ export default function PricingSection() {
           ))}
         </div>
 
-        {/* Countdown Early Bird */}
-        <EarlyBirdCountdown />
+        {/* Countdown Early Bird 
+        <EarlyBirdCountdown /> */}
       </div>
     </section>
   )

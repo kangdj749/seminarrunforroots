@@ -88,9 +88,6 @@ const LandingPage: React.FC = () => {
             <PricingSection />
           </section>
 
-          
-    
-
           {/* Kenapa */}
           <section id="kenapa">
             <WhyJoinSection />
