@@ -7,6 +7,12 @@ import { Calendar, MapPin, Clock } from "lucide-react"
 export default function TimelineInteractive() {
   const events = [
     {
+      title: "Seminar Krisis Iklim",
+      date: "Sabtu, 25 Oktober 2025",
+      place: "Aula kampus / Gedung pertemuan di Bandung ",
+      time: "08.00 – 12.00 WIB",
+    },
+    {
       title: "Charity Run",
       date: "Minggu, 30 November 2025",
       place: "Sabilulungan Dome, Sabilulungan Park, Pamekaran, Kec. Soreang, Kabupaten Bandung",
