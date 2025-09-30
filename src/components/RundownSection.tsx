@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react"
 
 export default function RundownSection() {
   const items = [
-    "Fun Run 2K, 5K dan 10K",
+    "Charity Run 2,5K, 5K dan 10K",
     "Booth Komunitas & Sponsor (Green Booth)",
     "Bazaar / Food Court",
     "Live music & penampilan guest star",

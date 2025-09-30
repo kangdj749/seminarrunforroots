@@ -31,7 +31,7 @@ export default function TentangEvent() {
             {/* Content */}
             <div className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed space-y-6">
               <p>
-                <span className="font-semibold text-green-700">Run for Roots 2025</span> bukan sekadar fun run biasa. 
+                <span className="font-semibold text-green-700">Run for Roots 2025</span> bukan sekadar charity run biasa. 
                 Ini adalah gerakan kolaborasi anak muda, keluarga, komunitas, dan pecinta alam 
                 yang peduli pada kesehatan sekaligus kelestarian lingkungan.
               </p>

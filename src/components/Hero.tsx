@@ -49,7 +49,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-base md:text-lg text-green-100/90 max-w-2xl mx-auto leading-relaxed">
-          Ayo ikut charity fun run yang bukan cuma bikin badan sehat,
+          Ayo ikut charity run yang bukan cuma bikin badan sehat,
           tapi juga bikin bumi kita kembali hijau.
           <span className="block font-semibold text-green-200 mt-2">
             Setiap langkahmu = kontribusi untuk penanaman 5.000 mangrove & pohon di Jawa Barat.

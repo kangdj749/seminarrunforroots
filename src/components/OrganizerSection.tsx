@@ -51,7 +51,7 @@ export default function OrganizerSection() {
         <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm md:text-base font-medium text-green-700">
           <span>#RunForRoots2025</span>
           <span>#LariUntukBumi</span>
-          <span>#FunRunBandung</span>
+          <span>#CharityRunBandung</span>
         </div>
       </div>
     </section>

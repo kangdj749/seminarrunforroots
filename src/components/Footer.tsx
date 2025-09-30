@@ -18,7 +18,7 @@ export default function Footer() {
           >
             <h3 className="text-2xl font-bold">🌱 Run for Roots 2025</h3>
             <p className="text-green-100 text-sm md:text-base leading-relaxed max-w-sm">
-              Fun Run sehat & seru, sekaligus aksi nyata menanam pohon dan
+              Charity Run sehat & seru, sekaligus aksi nyata menanam pohon dan
               mangrove untuk bumi lebih hijau.
             </p>
           </motion.div>
@@ -77,7 +77,7 @@ export default function Footer() {
         <div className="text-center mb-8">
           <p className="text-green-100 text-sm">Hashtag Resmi:</p>
           <p className="font-semibold text-green-50">
-            #RunForRoots2025 &nbsp; #LariUntukBumi &nbsp; #FunRunBandung
+            #RunForRoots2025 &nbsp; #LariUntukBumi &nbsp; #CharityRunBandung
           </p>
         </div>
 

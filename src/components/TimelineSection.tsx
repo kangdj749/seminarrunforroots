@@ -7,7 +7,7 @@ import { Calendar, MapPin, Clock } from "lucide-react"
 export default function TimelineInteractive() {
   const events = [
     {
-      title: "Fun Run",
+      title: "Charity Run",
       date: "Minggu, 30 November 2025",
       place: "Sabilulungan Dome, Sabilulungan Park, Pamekaran, Kec. Soreang, Kabupaten Bandung",
       time: "05.00 – 11.00 WIB",
@@ -41,7 +41,7 @@ export default function TimelineInteractive() {
             Timeline Acara
           </h2>
           <p className="text-gray-600 mt-3">
-            Dari Fun Run sampai aksi nyata penghijauan 🌱
+            Dari Charity Run sampai aksi nyata penghijauan 🌱
           </p>
         </motion.div>
 
