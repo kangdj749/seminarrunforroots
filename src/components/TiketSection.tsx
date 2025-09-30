@@ -67,13 +67,13 @@ function EarlyBirdCountdown() {
 // Section Harga
 export default function PricingSection() {
   const tickets = [
-    { title: "Family Run 2K", normal: 215000, early: 155000, best: false },
-    { title: "Couple / Bestie Run 5K", normal: 265000, early: 185000, best: true },
-    { title: "Challenger Run 10K", normal: 355000, early: 255000, best: false },
+    { title: "FAMILY 2,5K", normal: 215000, early: 155000, best: false },
+    { title: "CASUAL 5K", normal: 265000, early: 185000, best: true },
+    { title: "RACE 10K", normal: 355000, early: 255000, best: false },
   ]
 
   const facilities = [
-    "Kaos",
+    "Jersey",
     "Medali",
     "Produk sponsor",
     "Refreshment",
