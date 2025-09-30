@@ -129,10 +129,10 @@ function RegistrasiSection() {
             akan diarahkan ke WhatsApp panitia.
           </p>
 
-          {/* ✅ Preview Fundriser */}
+          {/* ✅ Preview Fundriser 
           <div className="mt-4 text-center bg-green-50 border border-green-200 text-green-700 rounded-xl py-2 px-3 text-sm font-medium">
             Kamu daftar lewat <span className="font-bold">{activeFundriser}</span>
-          </div>
+          </div> */}
 
           <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-8 space-y-6">
             <FormInput
