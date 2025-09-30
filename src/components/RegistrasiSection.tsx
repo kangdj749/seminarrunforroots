@@ -125,7 +125,7 @@ function RegistrasiSection() {
             Form Registrasi Peserta
           </h2>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Lengkapi data di bawah untuk daftar Fun Run. Setelah submit, kamu
+            Lengkapi data di bawah untuk daftar Charity Run. Setelah submit, kamu
             akan diarahkan ke WhatsApp panitia.
           </p>
 
