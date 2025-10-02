@@ -161,7 +161,7 @@ function RegistrasiSection() {
               label="Kategori Lari"
               register={register("lari")}
               error={errors.lari?.message}
-              options={["2K", "5K", "10K"]}
+              options={["FAMILY - 2,5 K", "CASUAL - 5K", "RACE - 10K"]}
             />
 
             <FormSelect
@@ -175,7 +175,7 @@ function RegistrasiSection() {
               label="Metode Pembayaran"
               register={register("pembayaran")}
               error={errors.pembayaran?.message}
-              options={["Transfer Bank", "E-Wallet (OVO/Gopay/Dana)", "Cash Onsite"]}
+              options={["Transfer Bank", "E-Wallet (OVO/Gopay/Dana)"]}
             />
 
             {/* Hidden field fundriser */}
