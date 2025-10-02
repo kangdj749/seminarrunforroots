@@ -8,16 +8,14 @@ import "aos/dist/aos.css";
 import Navbar from "@/components/Header"
 import Hero from "@/components/Hero"
 import TentangKami from "@/components/TentangKami"
-import Testimoni from "@/components/Testimoni"
 import Footer from "@/components/Footer"
 import HybridWhatsAppCTA from "@/components/HybridWhatsAppCTA"
-import PricingSection from "@/components/TiketSection";
 import TimelineSection from "@/components/TimelineSection";
-import RundownSection from "@/components/RundownSection";
 import WhyJoinSection from "@/components/WhyJoinSection";
-import RealisasiSection from "@/components/RealisasiSection";
 import OrganizerSection from "@/components/OrganizerSection";
-import SponsorSection from "@/components/SponsorSection";
+import TujuanAcara from "@/components/TujuanAcara";
+import DetailAcaraSection from "@/components/DetailAcaraSection";
+import EmotionalCTASection from "@/components/CTA";
 
 
 interface SheetData {
@@ -62,47 +60,43 @@ const LandingPage: React.FC = () => {
           <section id="hero">
             <Hero />
           </section>
-    
-          {/* Tentang Kami */}
-          <section id="tentang">
-            <TentangKami />
-          </section>
-
-          {/* Organizer */}
-          <section id="organizer">
-            <OrganizerSection />
-          </section>
-    
-          {/* Time Line */}
-          <section id="timeline">
-            <TimelineSection />
-          </section>
-
-          {/* Testimoni */}
-          <section id="rundown">
-            <RundownSection />
-          </section>
-
-          {/* Tiket */}
-          <section id="biaya">
-            <PricingSection />
-          </section>
 
           {/* Kenapa */}
           <section id="kenapa">
             <WhyJoinSection />
           </section>
+          
+          {/* Tentang Kami */}
+          <section id="tentang">
+            <TentangKami />
+          </section>
 
-        {/* Realisasi  */}
-          <section>
-            <RealisasiSection />
+          {/* Tujuan Acara */}
+          <section id="tujuan">
+            <TujuanAcara />
           </section>
-         
-         {/* Sponsor  */}
-          <section>
-            <SponsorSection />
+    
+          {/* Detail Acara */}
+          <section id="detail-acara">
+            <DetailAcaraSection />
           </section>
-         
+
+          {/* Timeline */}
+          <section id="susunan-acara">
+            <TimelineSection />
+          </section>
+
+          {/* CTA */}
+          <section id="cta">
+            <EmotionalCTASection />
+          </section>
+
+           {/* Organizer */}
+          <section id="organizer">
+            <OrganizerSection />
+          </section>
+
+                 
           {/* Footer */}
           <Footer />
           {/* WhatsApp CTA hybrid */}

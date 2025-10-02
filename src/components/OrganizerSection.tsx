@@ -1,58 +1,44 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
+import { ArrowRight } from "lucide-react"
 
 export default function OrganizerSection() {
   return (
-    <section className="py-16 bg-gradient-to-b from-white via-green-50 to-white">
-      <div className="container mx-auto px-6 md:px-12 text-center">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl font-bold text-green-700 mb-10"
+    <section
+      id="organizer"
+      className="relative w-full py-16 px-6 bg-gradient-to-b from-white to-green-50 text-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-2xl mx-auto"
+      >
+        <h2 className="text-2xl md:text-3xl font-bold text-green-800 mb-4 flex items-center justify-center gap-2">
+          🏃 Tentang Run for Roots 2025
+        </h2>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+          <span className="font-medium text-green-700">Run for Roots</span> adalah gerakan kolaboratif yang
+          menggabungkan olahraga, edukasi, dan aksi nyata penghijauan. Melalui kegiatan lari dan penanaman pohon,
+          kami mengajak masyarakat ikut menanam harapan untuk bumi yang lebih hijau.
+        </p>
+
+        <motion.a
+          href="https://runforroots.grahadhuafa.org" // Ganti dengan URL sebenarnya
+          whileHover={{ x: 5 }}
+          className="inline-flex items-center gap-2 text-green-700 font-semibold hover:text-green-900 transition text-lg"
         >
-          Diselenggarakan oleh
-        </motion.h2>
+          🌐 Pelajari Lebih Lanjut tentang Run for Roots
+          <ArrowRight className="w-5 h-5" />
+        </motion.a>
+      </motion.div>
 
-        {/* Logos */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-center gap-10"
-        >
-          {/* Logo LAZ GDI */}
-          <div className="relative w-40 h-20 md:w-48 md:h-24 grayscale hover:grayscale-0 transition duration-300">
-            <Image
-              src="/logo-laz-gdi.png" // ganti dengan path logo asli
-              alt="Logo LAZ GDI"
-              fill
-              className="object-contain"
-            />
-          </div>
-
-          {/* Logo Nusa Bumi Lestari */}
-          <div className="relative w-40 h-20 md:w-48 md:h-24 grayscale hover:grayscale-0 transition duration-300">
-            <Image
-              src="/NBL Png Green.png" // ganti dengan path logo asli
-              alt="Logo Yayasan Nusa Bumi Lestari"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </motion.div>
-
-        {/* Hashtags */}
-        <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm md:text-base font-medium text-green-700">
-          <span>#RunForRoots2025</span>
-          <span>#LariUntukBumi</span>
-          <span>#CharityRunBandung</span>
-        </div>
+      {/* Dekorasi background lembut */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 left-0 w-40 h-40 bg-green-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-sky-200/30 rounded-full blur-3xl" />
       </div>
     </section>
   )

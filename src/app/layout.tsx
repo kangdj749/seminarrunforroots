@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { GlobalToaster } from "@/components/GlobalToaster"
 
 export const metadata: Metadata = {
-  title: "Run For Roots",
-  description: "Run For Roots 2025 in Bandung by Laz GDI and NBL",
+  title: "Seminar Pra Event Run For Roots",
+  description: "Seminar Pra Event Run For Roots 2025 in Bandung by Laz GDI and NBL",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

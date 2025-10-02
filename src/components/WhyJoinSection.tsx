@@ -1,41 +1,26 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { HeartPulse, Leaf, Users, Sparkles } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import confetti from "canvas-confetti"
+import { ThermometerSun, CloudRain, Building2 } from "lucide-react"
 
-export default function WhyJoinSection() {
-  const reasons = [
+export default function WhySeminarSection() {
+  const facts = [
     {
-      icon: <HeartPulse className="w-7 h-7 text-green-600" />,
-      text: "Sehatnya dapet, serunya dapet, pahalanya juga dapet.",
+      icon: <ThermometerSun className="w-8 h-8 text-orange-600" />,
+      text: "+4 °C kenaikan suhu rata-rata dalam 25 tahun terakhir",
     },
     {
-      icon: <Leaf className="w-7 h-7 text-green-600" />,
-      text: "Kontribusi langsung buat bumi lebih hijau.",
+      icon: <CloudRain className="w-8 h-8 text-orange-600" />,
+      text: "Curah hujan ekstrem & tak menentu",
     },
     {
-      icon: <Users className="w-7 h-7 text-green-600" />,
-      text: "Networking bareng komunitas sehat & pecinta alam.",
-    },
-    {
-      icon: <Sparkles className="w-7 h-7 text-green-600" />,
-      text: "Experience unik yang bakal jadi cerita seru bareng teman & keluarga.",
+      icon: <Building2 className="w-8 h-8 text-orange-600" />,
+      text: "Urban heat island makin memperparah kondisi kota",
     },
   ]
 
-  const handleConfetti = () => {
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ["#16a34a", "#22c55e", "#86efac", "#ffffff"],
-    })
-  }
-
   return (
-    <section id="why-join" className="py-20 bg-white">
+    <section id="why-seminar" className="py-20 bg-gradient-to-b from-green-50 to-white">
       <div className="container mx-auto px-6 md:px-12">
         {/* Heading */}
         <motion.div
@@ -43,60 +28,64 @@ export default function WhyJoinSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-green-700">
-            Kenapa Harus Ikut?
+          <h2 className="text-3xl md:text-4xl font-extrabold text-green-800 leading-snug">
+            <span className="text-orange-600">🔥 Suhu Naik,</span> Hujan Tak Menentu, <br />
+            <span className="text-green-700">Masa Depan Kita Taruhannya</span>
           </h2>
-          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-            Run for Roots 2025 bukan cuma soal lari, tapi pengalaman holistik 
-            yang bermanfaat buat tubuh, hati, dan juga bumi 🌱
-          </p>
         </motion.div>
 
-        {/* Grid Alasan */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-16">
-          {reasons.map((reason, idx) => (
+        {/* Paragraf Edukasi */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-gray-700 max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 text-center"
+        >
+          Bandung yang dulu sejuk kini makin panas. Suhu rata-rata melonjak dari{" "}
+          <strong>23,1 °C (tahun 2000)</strong> menjadi sekitar{" "}
+          <strong>27,1 °C menjelang 2025</strong>. Hujan datang tak tentu, cuaca ekstrem semakin sering.
+          Ini bukan perubahan kecil — ini tanda krisis iklim nyata yang memengaruhi kehidupan kita semua.
+        </motion.p>
+
+        {/* Fakta Singkat */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+          {facts.map((fact, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5, delay: idx * 0.15 }}
               viewport={{ once: true }}
-              className="flex items-start gap-4 bg-green-50 border border-green-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition"
+              className="group flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-sm border border-green-100 hover:shadow-md hover:-translate-y-1 transition"
             >
-              <div className="flex-shrink-0 bg-white rounded-full p-3 shadow-inner">
-                {reason.icon}
-              </div>
-              <span className="text-gray-700 text-base md:text-lg leading-relaxed">
-                {reason.text}
-              </span>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                className="bg-orange-50 rounded-full p-4 mb-3 shadow-inner group-hover:animate-pulse"
+              >
+                {fact.icon}
+              </motion.div>
+              <p className="text-gray-800 text-sm md:text-base font-medium leading-relaxed">
+                {fact.text}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Mini CTA dengan confetti */}
+        {/* Penutup Section */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-3xl shadow-lg p-10 text-center max-w-3xl mx-auto"
+          className="text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Yuk, jangan cuma jadi penonton!
-          </h3>
-          <p className="mb-6 text-green-50">
-            Ayo ikut <span className="font-semibold">Run for Roots 2025</span> – 
-            sehatnya dapet, serunya dapet, bumi pun makin hijau 🌍
+          <p className="inline-block bg-green-600 text-white px-6 py-3 rounded-full text-base md:text-lg font-semibold shadow-md">
+            ➡️ Saatnya berhenti jadi penonton, dan mulai jadi bagian dari solusi.
           </p>
-          <Button
-            size="lg"
-            onClick={handleConfetti}
-            className="bg-white text-green-700 font-bold rounded-xl px-8 py-4 hover:scale-105 hover:bg-green-50 transition"
-          >
-            <a href="/registrasi">Daftar Sekarang</a>
-          </Button>
         </motion.div>
       </div>
     </section>

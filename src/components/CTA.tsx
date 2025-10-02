@@ -1,83 +1,43 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { PhoneCall, ClipboardList } from "lucide-react"
-import { useSearchParams } from "next/navigation"
 
-export default function CTA() {
-  const whatsappNumber = "62882000015029" // tanpa 0
-  const defaultMessage = encodeURIComponent(
-    "Halo, saya ingin konsultasi dan pesan layanan Nusa Home Care 🌿"
-  )
-
-  const searchParams = useSearchParams()
-  const fundriser = searchParams.get("fundriser")
-
-  // Buat link registrasi sesuai ada/tidaknya fundriser
-  const registrasiLink = fundriser
-    ? `/registrasi?fundriser=${encodeURIComponent(fundriser)}`
-    : "/registrasi"
-
+export default function EmotionalCTASection() {
   return (
     <section
       id="cta"
-      className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-white"
+      className="relative w-full py-16 px-6 bg-gradient-to-br from-green-700 via-green-800 to-sky-900 text-white text-center overflow-hidden"
     >
-      <div className="container mx-auto px-6 md:px-12 text-center">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-10"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            🌿 Hidup lebih sehat, lebih tenang, tanpa ribet
-          </h2>
-          <p className="text-green-100 text-base md:text-lg leading-relaxed">
-            Dengan <span className="font-semibold">Nusa Home Care</span>, keluarga Anda mendapatkan perawatan 
-            profesional dengan rasa penuh kasih.  
-            Klik tombol di bawah ini untuk konsultasi GRATIS & pesan layanan sekarang juga.
-          </p>
-        </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-2xl mx-auto"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-snug">
+          💚 Bumi Butuh Kita, Sekarang. Bukan Nanti.
+        </h2>
+        <p className="text-base md:text-lg mb-8 leading-relaxed opacity-90">
+          Krisis iklim bukan isu jauh di Antartika — ia terjadi di halaman rumah kita sendiri.
+          Suara dan langkah kecilmu bisa menjadi bagian dari perubahan besar.
+          Mari hadir, dengarkan, bersuara, dan bergerak bersama untuk masa depan yang lestari 🌱
+        </p>
 
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+        <motion.a
+          href="/registrasi"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          className="inline-block bg-white-50 text-green-800 font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-green-50 transition text-lg"
         >
-          {/* Button ke Form Registrasi */}
-          <Button
-            asChild
-            className="bg-white-50 text-green-700 hover:bg-green-50 rounded-xl px-8 py-4 text-lg font-semibold shadow-md hover:shadow-lg transition"
-          >
-            <a href={registrasiLink}>
-              <ClipboardList className="w-5 h-5 mr-2 inline-block" />
-              Daftar Sekarang
-            </a>
-          </Button>
+          👉 DAFTAR SEKARANG — GRATIS
+        </motion.a>
+      </motion.div>
 
-          {/* Button ke WhatsApp */}
-          <Button
-            asChild
-            variant="outline"
-            className="border-white text-white hover:bg-green-800 rounded-xl px-8 py-4 text-lg font-semibold shadow-md hover:shadow-lg transition"
-          >
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${defaultMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <PhoneCall className="w-5 h-5 mr-2 inline-block" />
-              Hubungi via WhatsApp
-            </a>
-          </Button>
-        </motion.div>
+      {/* Dekorasi background ringan */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 -left-10 w-48 h-48 bg-green-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-3xl" />
       </div>
     </section>
   )

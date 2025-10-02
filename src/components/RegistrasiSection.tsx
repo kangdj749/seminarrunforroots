@@ -7,7 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
-// ====== Validasi Zod ======
+// --- define literal tuples for z.enum (as const) ---
+const GENDERS = ["Laki-laki", "Perempuan"] as const
+const METHODS = ["Individu", "Delegasi Kampus/Organisasi"] as const
+
+// ====== Schema Zod ======
 const formSchema = z.object({
   nama: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
@@ -15,19 +19,20 @@ const formSchema = z.object({
     .string()
     .min(8, "Nomor HP terlalu pendek")
     .regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
-  lari: z.enum(["FAMILY - 2,5K", "CASUAL - 5K", "RACE - 10K"]),
-  jersey: z.string().min(1, "Wajib pilih ukuran jersey"),
-  pembayaran: z.string().min(1, "Wajib pilih metode pembayaran"),
-  fundriser: z.string().optional(), // hidden field
+  institusi: z.string().min(2, "Asal kampus/institusi wajib diisi"),
+  prodi: z.string().min(2, "Program studi / jabatan wajib diisi"),
+  gender: z.enum(GENDERS, { message: "Wajib pilih jenis kelamin" }),
+  metode: z.enum(METHODS, { message: "Wajib pilih metode pendaftaran" }),
+  fundriser: z.string().optional(),
 })
+
 type FormValues = z.infer<typeof formSchema>
 
-// ====== Ganti URL sesuai WebApp GAS kamu ======
+// ====== Config (ubah sesuai kebutuhan) ======
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyepCFd9Chfse9obYsuMxcdFYzoLR4KFEAH2SSvd0SQGildOO2kYxTX_j2IIc7nZ6s/exec"
+  "https://script.google.com/macros/s/AKfycbwpTrtFed2L3_t9nPWpDfX3he4oesTDIgZ-4ZkWDkWp9IsS2f87a1wtRQuWsFhWmuAB/exec"
 const WHATSAPP_ADMIN = "6281322817712" // WA panitia
 
-// 🔹 Bungkus dengan Suspense supaya aman di Vercel
 export default function RegistrasiSectionWrapper() {
   return (
     <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>
@@ -48,10 +53,10 @@ function RegistrasiSection() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
-    defaultValues: { fundriser: "Tanpa Fundriser" },
+    defaultValues: { fundriser: "Tanpa Fundriser" as string },
   })
 
-  // ✅ Ambil fundriser dari query/localStorage hanya di client
+  // Ambil fundriser dari query / localStorage (client-only)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search)
@@ -73,7 +78,7 @@ function RegistrasiSection() {
     setSubmitting(true)
 
     try {
-      // 1) Simpan ke Google Sheets
+      // Save to Google Sheets via WebApp
       const res = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -82,28 +87,28 @@ function RegistrasiSection() {
 
       if (!res.ok) throw new Error("Gagal simpan ke Google Sheets")
 
-      // 2) success toast
       toast.success("Registrasi berhasil ✅", {
-        description: "Anda akan diarahkan ke WhatsApp...",
+        description: "Anda akan diarahkan ke WhatsApp panitia...",
       })
 
-      // 3) Redirect ke WhatsApp
+      // redirect to WA with summary message
       setTimeout(() => {
         const msg = [
-          "Halo Panitia Run for Roots 2025 🌱, saya ingin mendaftar:",
+          "Halo Panitia Seminar Run for Roots 🌿, saya ingin mendaftar:",
           `Nama: ${data.nama}`,
           `Email: ${data.email}`,
           `No HP: ${data.nohp}`,
-          `Kategori Lari: ${data.lari}`,
-          `Ukuran Jersey: ${data.jersey}`,
-          `Metode Pembayaran: ${data.pembayaran}`,
+          `Asal Kampus/Institusi: ${data.institusi}`,
+          `Prodi/Jabatan: ${data.prodi}`,
+          `Jenis Kelamin: ${data.gender}`,
+          `Metode Pendaftaran: ${data.metode}`,
           data.fundriser ? `Fundriser: ${data.fundriser}` : "",
         ].join("\n")
 
         window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(
           msg
         )}`
-      }, 1500)
+      }, 1200)
     } catch (err) {
       console.error(err)
       toast.error("Registrasi Gagal ❌", {
@@ -122,17 +127,11 @@ function RegistrasiSection() {
       <div className="w-full max-w-md mx-auto">
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
           <h2 className="text-3xl font-bold text-green-700 text-center">
-            Form Registrasi Peserta
+            Form Registrasi Seminar
           </h2>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Lengkapi data di bawah untuk daftar Charity Run. Setelah submit, kamu
-            akan diarahkan ke WhatsApp panitia.
+            Lengkapi data di bawah untuk mengikuti seminar pra-event Run for Roots 2025.
           </p>
-
-          {/* ✅ Preview Fundriser 
-          <div className="mt-4 text-center bg-green-50 border border-green-200 text-green-700 rounded-xl py-2 px-3 text-sm font-medium">
-            Kamu daftar lewat <span className="font-bold">{activeFundriser}</span>
-          </div> */}
 
           <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-8 space-y-6">
             <FormInput
@@ -157,28 +156,34 @@ function RegistrasiSection() {
               placeholder="cth: 08123456789"
             />
 
-            <FormSelect
-              label="Kategori Lari"
-              register={register("lari")}
-              error={errors.lari?.message}
-              options={["FAMILY - 2,5K", "CASUAL - 5K", "RACE - 10K"]} 
+            <FormInput
+              label="Asal Kampus / Institusi"
+              register={register("institusi")}
+              error={errors.institusi?.message}
+              placeholder="cth: Universitas Bandung"
+            />
+
+            <FormInput
+              label="Program Studi / Jabatan"
+              register={register("prodi")}
+              error={errors.prodi?.message}
+              placeholder="cth: Ilmu Komunikasi / Dosen"
             />
 
             <FormSelect
-              label="Ukuran Jersey"
-              register={register("jersey")}
-              error={errors.jersey?.message}
-              options={["S", "M", "L", "XL", "XXL"]}
+              label="Jenis Kelamin"
+              register={register("gender")}
+              error={errors.gender?.message}
+              options={Array.from(GENDERS)}
             />
 
             <FormSelect
-              label="Metode Pembayaran"
-              register={register("pembayaran")}
-              error={errors.pembayaran?.message}
-              options={["Transfer Bank", "E-Wallet (OVO/Gopay/Dana)"]}
+              label="Metode Pendaftaran"
+              register={register("metode")}
+              error={errors.metode?.message}
+              options={Array.from(METHODS)}
             />
 
-            {/* Hidden field fundriser */}
             <input type="hidden" {...register("fundriser")} />
 
             <button
@@ -191,7 +196,7 @@ function RegistrasiSection() {
                   <Loader2 className="h-5 w-5 animate-spin" /> Mengirim...
                 </>
               ) : (
-                "Daftar Sekarang"
+                "Daftar Sekarang — Gratis"
               )}
             </button>
           </form>

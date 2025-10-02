@@ -7,12 +7,13 @@ import Image from "next/image"
 
 const navLinks = [
   { name: "Beranda", href: "#hero" },
-  { name: "Tentang Event", href: "#tentang" },
-  { name: "Timeline", href: "#timeline" },
-  { name: "Bentuk Kegiatan", href: "#rundown" },
-  { name: "Biaya", href: "#biaya" },
   { name: "Kenapa Harus Ikut", href: "#kenapa" },
-  { name: "Realisasi", href: "#realisasi" },
+  { name: "Tentang Event", href: "#tentang" },
+  { name: "Tujuan Acara", href: "#tujuan" },
+  { name: "Timeline", href: "#susunan-acara" },
+  { name: "Run For Roots", href: "#organizer" },
+  
+  
   
 ]
 

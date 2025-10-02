@@ -1,39 +1,54 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Calendar, MapPin, Clock } from "lucide-react"
+import { motion } from "framer-motion"
+import { ScrollText, Video, Brain, MessagesSquare, Music, Leaf, Megaphone, Camera } from "lucide-react"
 
-export default function TimelineInteractive() {
-  const events = [
+export default function TimelineSection() {
+  const timeline = [
     {
-      title: "Seminar Krisis Iklim",
-      date: "Sabtu, 25 Oktober 2025",
-      place: "Aula kampus / Gedung pertemuan di Bandung ",
-      time: "08.00 – 12.00 WIB",
+      time: "08.00",
+      icon: <ScrollText className="w-5 h-5 text-green-700" />,
+      title: "Pembukaan & Sambutan",
     },
     {
-      title: "Charity Run",
-      date: "Minggu, 30 November 2025",
-      place: "Sabilulungan Dome, Sabilulungan Park, Pamekaran, Kec. Soreang, Kabupaten Bandung",
-      time: "05.00 – 11.00 WIB",
+      time: "08.35",
+      icon: <Video className="w-5 h-5 text-green-700" />,
+      title: "Video Teaser Krisis Iklim",
     },
     {
-      title: "Penanaman Mangrove",
-      date: "Minggu, 28 Desember 2025",
-      place: "Pantai Pondok Putri Desa Legonwetan, Kec. Legonkulon,Kab. Subang",
-      time: "06.00 – 12.00 WIB",
+      time: "08.45",
+      icon: <Brain className="w-5 h-5 text-green-700" />,
+      title: "Seminar Utama (2 Narasumber)",
     },
     {
-      title: "Penanaman Pohon",
-      date: "Minggu, 25 Januari 2026",
-      place: "Monteng Kamojang, Laksana, Kec. Ibun, Kabupaten Bandung",
-      time: "06.00 – 12.00 WIB",
+      time: "09.40",
+      icon: <MessagesSquare className="w-5 h-5 text-green-700" />,
+      title: "Diskusi Panel Aktivis & Akademisi",
+    },
+    {
+      time: "10.40",
+      icon: <Music className="w-5 h-5 text-green-700" />,
+      title: "Monolog & Penampilan Musik",
+    },
+    {
+      time: "11.00",
+      icon: <Leaf className="w-5 h-5 text-green-700" />,
+      title: "Deklarasi Komitmen Mahasiswa",
+    },
+    {
+      time: "11.10",
+      icon: <Megaphone className="w-5 h-5 text-green-700" />,
+      title: "Promo Run for Roots 2025",
+    },
+    {
+      time: "11.30",
+      icon: <Camera className="w-5 h-5 text-green-700" />,
+      title: "Foto Bersama & Penutupan",
     },
   ]
 
   return (
-    <section id="timeline" className="py-20 bg-gradient-to-b from-white via-green-50 to-white">
+    <section id="susunan-acara" className="py-20 bg-gradient-to-b from-white to-green-50">
       <div className="container mx-auto px-6 md:px-12">
         {/* Heading */}
         <motion.div
@@ -41,72 +56,51 @@ export default function TimelineInteractive() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-green-700">
-            Timeline Acara
+          <h2 className="text-3xl md:text-4xl font-extrabold text-green-800 leading-snug">
+            🕒 Susunan Acara (Highlight)
           </h2>
-          <p className="text-gray-600 mt-3">
-            Dari Charity Run sampai aksi nyata penghijauan 🌱
-          </p>
         </motion.div>
 
         {/* Timeline Container */}
-        <div className="relative flex flex-col md:flex-row md:justify-between md:gap-12">
-          {events.map((event, idx) => {
-            const ref = useRef(null)
-            const isInView = useInView(ref, { amount: 0.6, once: false })
+        <div className="relative max-w-3xl mx-auto">
+          {/* Vertical line */}
+          <div className="absolute left-4 top-0 bottom-0 w-1 bg-green-200 rounded-full md:left-1/2 md:-translate-x-1/2"></div>
 
-            return (
+          <div className="space-y-8">
+            {timeline.map((item, idx) => (
               <motion.div
                 key={idx}
-                ref={ref}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 20 }}
-                transition={{ duration: 0.6 }}
-                className="relative flex flex-col items-center md:w-1/3 mb-12 md:mb-0"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className={`relative flex items-start gap-4 md:gap-8 ${
+                  idx % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""
+                }`}
               >
-                {/* Line Connector */}
-                {idx < events.length - 1 && (
-                  <>
-                    {/* Vertical line for mobile */}
-                    <div className="absolute left-[50%] top-14 h-full w-1 bg-green-200 md:hidden"></div>
-                    {/* Horizontal line for desktop */}
-                    <div className="hidden md:block absolute top-6 left-full w-full h-1 bg-green-200"></div>
-                  </>
-                )}
-
-                {/* Step Icon */}
+                {/* Icon + dot */}
                 <div
-                  className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full shadow-md transition-all duration-500 ${
-                    isInView ? "bg-green-600 text-white scale-110" : "bg-green-100 text-green-500"
-                  }`}
+                  className={`absolute left-4 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center bg-white border-4 border-green-500 rounded-full w-10 h-10 shadow-md hover:animate-pulse transition`}
                 >
-                  <Calendar className="w-7 h-7" />
+                  {item.icon}
                 </div>
 
-                {/* Content Card */}
+                {/* Content */}
                 <div
-                  className={`mt-6 bg-white border rounded-2xl shadow-lg p-6 w-full text-center transition-all duration-500 ${
-                    isInView ? "border-green-400" : "border-green-100"
+                  className={`ml-14 md:w-5/12 ${
+                    idx % 2 === 0 ? "md:ml-0 md:pr-8" : "md:pl-8"
                   }`}
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-green-700 mb-2">
-                    {event.title}
-                  </h3>
-                  <p className="flex items-center justify-center text-gray-700 text-sm mb-1">
-                    <Calendar className="w-4 h-4 mr-2 text-green-600" /> {event.date}
-                  </p>
-                  <p className="flex items-center justify-center text-gray-700 text-sm mb-1">
-                    <MapPin className="w-4 h-4 mr-2 text-green-600" /> {event.place}
-                  </p>
-                  <p className="flex items-center justify-center text-gray-700 text-sm">
-                    <Clock className="w-4 h-4 mr-2 text-green-600" /> {event.time}
-                  </p>
+                  <div className="bg-white rounded-xl shadow-sm border border-green-100 p-4 hover:shadow-md transition">
+                    <p className="text-green-700 font-semibold text-sm mb-1">{item.time}</p>
+                    <p className="text-gray-800 text-base md:text-lg font-medium">{item.title}</p>
+                  </div>
                 </div>
               </motion.div>
-            )
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

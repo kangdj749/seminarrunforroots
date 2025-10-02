@@ -6,7 +6,7 @@ import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function HybridWhatsAppCTA() {
-  const whatsappNumber = "6281322817712" // nomor WA panitia
+  const whatsappNumber = "6281322817712" // Nomor WA panitia Seminar Run for Roots
   const [waLink, setWaLink] = useState("")
 
   useEffect(() => {
@@ -20,8 +20,10 @@ export default function HybridWhatsAppCTA() {
         localStorage.setItem("fundriser", fundriserFromLink)
       }
 
+      // 📝 Pesan default untuk seminar
       const defaultMessage = [
-        "Halo panitia Run for Roots 2025 🌱, saya mau daftar / tanya info lebih lanjut tentang event Fun Run.",
+        "Halo panitia Seminar Run for Roots 2025 🌱",
+        "Saya ingin bertanya atau mendaftar untuk acara seminar lingkungan tersebut.",
         finalFundriser ? `\n\n(Daftar lewat Fundriser: ${finalFundriser})` : "",
       ].join(" ")
 
@@ -29,11 +31,11 @@ export default function HybridWhatsAppCTA() {
     }
   }, [])
 
-  if (!waLink) return null // biar aman pas SSR
+  if (!waLink) return null // biar aman saat SSR
 
   return (
     <>
-      {/* Sticky CTA Bar (mobile only) */}
+      {/* Sticky CTA Bar (Mobile) */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -42,7 +44,7 @@ export default function HybridWhatsAppCTA() {
       >
         <div className="bg-green-600 text-white px-4 py-3 shadow-2xl flex items-center justify-between rounded-t-2xl">
           <span className="font-medium text-sm">
-            🌱 Tanya & Daftar Run for Roots 2025
+            🌿 Tanya atau Daftar Seminar Run for Roots
           </span>
           <Button
             asChild
@@ -55,7 +57,7 @@ export default function HybridWhatsAppCTA() {
         </div>
       </motion.div>
 
-      {/* Floating Button (desktop only) */}
+      {/* Floating Button (Desktop) */}
       <motion.a
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
