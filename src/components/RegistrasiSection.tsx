@@ -15,7 +15,7 @@ const formSchema = z.object({
     .string()
     .min(8, "Nomor HP terlalu pendek")
     .regex(/^[0-9+]+$/, "Hanya angka atau tanda +"),
-  lari: z.enum(["2K", "5K", "10K"]),
+  lari: z.enum(["FAMILY - 2,5K", "CASUAL - 5K", "RACE - 10K"]),
   jersey: z.string().min(1, "Wajib pilih ukuran jersey"),
   pembayaran: z.string().min(1, "Wajib pilih metode pembayaran"),
   fundriser: z.string().optional(), // hidden field
@@ -161,7 +161,7 @@ function RegistrasiSection() {
               label="Kategori Lari"
               register={register("lari")}
               error={errors.lari?.message}
-              options={["FAMILY - 25 K", "CASUAL - 5K", "RACE - 10K"]}
+              options={["FAMILY - 2,5K", "CASUAL - 5K", "RACE - 10K"]} 
             />
 
             <FormSelect
