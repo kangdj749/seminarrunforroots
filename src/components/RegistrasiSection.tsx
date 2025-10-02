@@ -161,7 +161,7 @@ function RegistrasiSection() {
               label="Kategori Lari"
               register={register("lari")}
               error={errors.lari?.message}
-              options={["FAMILY - 2,5 K", "CASUAL - 5K", "RACE - 10K"]}
+              options={["FAMILY - 25 K", "CASUAL - 5K", "RACE - 10K"]}
             />
 
             <FormSelect
