@@ -9,17 +9,17 @@ export default function DetailAcaraSection() {
     {
       icon: <CalendarDays className="w-6 h-6 text-green-700" />,
       label: "Tanggal",
-      value: "Sabtu, 25 Oktober 2025 (TBC)",
+      value: "Sabtu, 25 Oktober 2025",
     },
     {
       icon: <Clock className="w-6 h-6 text-green-700" />,
       label: "Waktu",
-      value: "08.00 – 12.00 WIB",
+      value: "07.30 – 12.05 WIB",
     },
     {
       icon: <MapPin className="w-6 h-6 text-green-700" />,
       label: "Lokasi",
-      value: "Aula Kampus / Gedung Pertemuan Bandung (TBC)",
+      value: "UIN SGD(Kampus 1) / Aula Auditorium Abdjan Soelaeman",
     },
     {
       icon: <Users className="w-6 h-6 text-green-700" />,

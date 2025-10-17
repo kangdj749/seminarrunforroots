@@ -7,11 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
-// --- define literal tuples for z.enum (as const) ---
 const GENDERS = ["Laki-laki", "Perempuan"] as const
 const METHODS = ["Individu", "Delegasi Kampus/Organisasi"] as const
 
-// ====== Schema Zod ======
+// ✅ Tambahkan riwayat di schema
 const formSchema = z.object({
   nama: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
@@ -23,15 +22,15 @@ const formSchema = z.object({
   prodi: z.string().min(2, "Program studi / jabatan wajib diisi"),
   gender: z.enum(GENDERS, { message: "Wajib pilih jenis kelamin" }),
   metode: z.enum(METHODS, { message: "Wajib pilih metode pendaftaran" }),
+  riwayat: z.string().optional(), // 🩺 field baru
   fundriser: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof formSchema>
 
-// ====== Config (ubah sesuai kebutuhan) ======
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwpTrtFed2L3_t9nPWpDfX3he4oesTDIgZ-4ZkWDkWp9IsS2f87a1wtRQuWsFhWmuAB/exec"
-const WHATSAPP_ADMIN = "6281322817712" // WA panitia
+const WHATSAPP_ADMIN = "6281322817712"
 
 export default function RegistrasiSectionWrapper() {
   return (
@@ -53,10 +52,9 @@ function RegistrasiSection() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
-    defaultValues: { fundriser: "Tanpa Fundriser" as string },
+    defaultValues: { fundriser: "Tanpa Fundriser" },
   })
 
-  // Ambil fundriser dari query / localStorage (client-only)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search)
@@ -67,31 +65,25 @@ function RegistrasiSection() {
       setActiveFundriser(finalFundriser)
       setValue("fundriser", finalFundriser)
 
-      if (fundriserFromLink) {
-        localStorage.setItem("fundriser", fundriserFromLink)
-      }
+      if (fundriserFromLink) localStorage.setItem("fundriser", fundriserFromLink)
     }
   }, [setValue])
 
   const handleSubmitForm: SubmitHandler<FormValues> = async (data) => {
     if (submitting) return
     setSubmitting(true)
-
     try {
-      // Save to Google Sheets via WebApp
       const res = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as any),
       })
-
       if (!res.ok) throw new Error("Gagal simpan ke Google Sheets")
 
       toast.success("Registrasi berhasil ✅", {
         description: "Anda akan diarahkan ke WhatsApp panitia...",
       })
 
-      // redirect to WA with summary message
       setTimeout(() => {
         const msg = [
           "Halo Panitia Seminar Run for Roots 🌿, saya ingin mendaftar:",
@@ -102,12 +94,11 @@ function RegistrasiSection() {
           `Prodi/Jabatan: ${data.prodi}`,
           `Jenis Kelamin: ${data.gender}`,
           `Metode Pendaftaran: ${data.metode}`,
-          data.fundriser ? `Fundriser: ${data.fundriser}` : "",
+          data.riwayat ? `Riwayat Sakit Bawaan: ${data.riwayat}` : "",
+          //data.fundriser ? `Fundriser: ${data.fundriser}` : "",
         ].join("\n")
 
-        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(
-          msg
-        )}`
+        window.location.href = `https://wa.me/${WHATSAPP_ADMIN}?text=${encodeURIComponent(msg)}`
       }, 1200)
     } catch (err) {
       console.error(err)
@@ -120,68 +111,30 @@ function RegistrasiSection() {
   }
 
   return (
-    <section
-      id="registrasi"
-      className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50"
-    >
+    <section id="registrasi" className="py-20 px-4 bg-gradient-to-b from-green-50 via-white to-green-50">
       <div className="w-full max-w-md mx-auto">
         <div className="bg-white rounded-3xl shadow-lg border border-green-100 p-6 md:p-10">
-          <h2 className="text-3xl font-bold text-green-700 text-center">
-            Form Registrasi Seminar
-          </h2>
+          <h2 className="text-3xl font-bold text-green-700 text-center">Form Registrasi Seminar</h2>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Lengkapi data di bawah untuk mengikuti seminar pra-event Run for Roots 2025.
+            Lengkapi data di bawah untuk mengikuti seminar. Biar konsen, jangan lupa makan sebelum datang ya.
           </p>
 
           <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-8 space-y-6">
+            <FormInput label="Nama Lengkap" register={register("nama")} error={errors.nama?.message} placeholder="cth: Budi Santoso" />
+            <FormInput label="Email" type="email" register={register("email")} error={errors.email?.message} placeholder="cth: email@gmail.com" />
+            <FormInput label="No HP / WhatsApp" register={register("nohp")} error={errors.nohp?.message} placeholder="cth: 08123456789" />
+            <FormInput label="Asal Kampus / Institusi" register={register("institusi")} error={errors.institusi?.message} placeholder="cth: Universitas Bandung" />
+            <FormInput label="Program Studi / Jabatan" register={register("prodi")} error={errors.prodi?.message} placeholder="cth: Ilmu Komunikasi / Dosen" />
+
+            <FormSelect label="Jenis Kelamin" register={register("gender")} error={errors.gender?.message} options={Array.from(GENDERS)} />
+            <FormSelect label="Metode Pendaftaran" register={register("metode")} error={errors.metode?.message} options={Array.from(METHODS)} />
+
+            {/* 🩺 Tambahan baru */}
             <FormInput
-              label="Nama Lengkap"
-              register={register("nama")}
-              error={errors.nama?.message}
-              placeholder="cth: Budi Santoso"
-            />
-
-            <FormInput
-              label="Email"
-              type="email"
-              register={register("email")}
-              error={errors.email?.message}
-              placeholder="cth: email@gmail.com"
-            />
-
-            <FormInput
-              label="No HP / WhatsApp"
-              register={register("nohp")}
-              error={errors.nohp?.message}
-              placeholder="cth: 08123456789"
-            />
-
-            <FormInput
-              label="Asal Kampus / Institusi"
-              register={register("institusi")}
-              error={errors.institusi?.message}
-              placeholder="cth: Universitas Bandung"
-            />
-
-            <FormInput
-              label="Program Studi / Jabatan"
-              register={register("prodi")}
-              error={errors.prodi?.message}
-              placeholder="cth: Ilmu Komunikasi / Dosen"
-            />
-
-            <FormSelect
-              label="Jenis Kelamin"
-              register={register("gender")}
-              error={errors.gender?.message}
-              options={Array.from(GENDERS)}
-            />
-
-            <FormSelect
-              label="Metode Pendaftaran"
-              register={register("metode")}
-              error={errors.metode?.message}
-              options={Array.from(METHODS)}
+              label="Riwayat Sakit Bawaan (jika ada)"
+              register={register("riwayat")}
+              error={errors.riwayat?.message}
+              placeholder="cth: Asma, hipertensi, dll"
             />
 
             <input type="hidden" {...register("fundriser")} />
@@ -206,7 +159,6 @@ function RegistrasiSection() {
   )
 }
 
-// ========= Helper Components =========
 function FormInput({ label, register, error, type = "text", placeholder }: any) {
   return (
     <div>

@@ -16,6 +16,7 @@ import OrganizerSection from "@/components/OrganizerSection";
 import TujuanAcara from "@/components/TujuanAcara";
 import DetailAcaraSection from "@/components/DetailAcaraSection";
 import EmotionalCTASection from "@/components/CTA";
+import NarasumberSection from "@/components/NarasumberSection";
 
 
 interface SheetData {
@@ -60,7 +61,11 @@ const LandingPage: React.FC = () => {
           <section id="hero">
             <Hero />
           </section>
-
+          
+          {/* Narasumber */}
+          <section id="narsum">
+            <NarasumberSection />
+          </section>
           {/* Kenapa */}
           <section id="kenapa">
             <WhyJoinSection />
