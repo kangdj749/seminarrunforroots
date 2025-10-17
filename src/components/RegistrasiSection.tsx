@@ -29,7 +29,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwpTrtFed2L3_t9nPWpDfX3he4oesTDIgZ-4ZkWDkWp9IsS2f87a1wtRQuWsFhWmuAB/exec"
+  "https://script.google.com/macros/s/AKfycbynJFaEgvtbRpUCtBgCf6xz81_fpzWSXIBOnJ1qGv0x9Z_Q-Gp4ChauAr1hk4OBynpZ/exec"
 const WHATSAPP_ADMIN = "6281322817712"
 
 export default function RegistrasiSectionWrapper() {
