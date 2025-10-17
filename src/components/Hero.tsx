@@ -102,7 +102,7 @@ export default function Hero() {
           {/* Event Info */}
           <div className="mt-6 text-green-100 text-sm md:text-base space-y-1">
             <div>🗓️ 25 Oktober 2025</div>
-            <div>📍 Bandung — Aula Kampus (TBA)</div>
+            <div>📍 UIN SGD(Kampus 1) / Aula Auditorium Abdjan Soelaeman</div>
           </div>
         </motion.div>
       </section>
