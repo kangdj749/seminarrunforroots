@@ -11,64 +11,113 @@ import {
   Leaf,
   Megaphone,
   Camera,
+  BookOpen,
+  Mic,
 } from "lucide-react"
 
 export default function TimelineSection() {
   const timeline = [
     {
-      time: "08.00",
+      time: "07.30 – 08.00",
       icon: <ScrollText className="w-5 h-5 text-green-700" />,
-      title: "Pembukaan & Sambutan",
-      desc: "Sambutan dari panitia, Dinas Lingkungan Hidup, dan BAZNAS.",
+      title: "Registrasi Peserta",
+      desc: "Peserta melakukan registrasi dan pengambilan starter pack.",
     },
     {
-      time: "08.35",
+      time: "08.00 – 08.20",
+      icon: <Mic className="w-5 h-5 text-green-700" />,
+      title: "Pembukaan & Sambutan",
+      desc: "Sambutan dari panitia, perwakilan Dinas Lingkungan Hidup, dan BAZNAS.",
+    },
+    {
+      time: "08.20 – 08.25",
+      icon: <BookOpen className="w-5 h-5 text-green-700" />,
+      title: "Pembacaan Ayat Suci Al-Qur’an",
+      desc: "Mengawali acara dengan lantunan ayat suci dan doa bersama.",
+    },
+    {
+      time: "08.25 – 08.35",
+      icon: <Music className="w-5 h-5 text-green-700" />,
+      title: "Menyanyikan Lagu Indonesia Raya",
+      desc: "Seluruh peserta berdiri menyanyikan lagu kebangsaan Indonesia Raya.",
+    },
+    {
+      time: "08.35 – 08.45",
       icon: <Video className="w-5 h-5 text-green-700" />,
       title: "Video Teaser Krisis Iklim",
-      desc: "Pemutaran video singkat tentang kondisi lingkungan & perubahan iklim.",
+      desc: "Pemutaran video singkat tentang kondisi krisis iklim dan lingkungan global.",
     },
     {
-      time: "08.45",
+      time: "08.45 – 09.15",
       icon: <Users className="w-5 h-5 text-green-700" />,
-      title: "Seminar Utama",
-      desc: "Narasumber dari akademisi, aktivis lingkungan, dan lembaga sosial (DLH & BAZNAS).",
+      title: "Narasumber 1",
+      desc: "Pemaparan materi utama dari narasumber pertama.",
     },
     {
-      time: "09.40",
+      time: "09.15 – 09.45",
+      icon: <Users className="w-5 h-5 text-green-700" />,
+      title: "Narasumber 2",
+      desc: "Sesi lanjutan bersama narasumber kedua.",
+    },
+    {
+      time: "09.45 – 09.50",
+      icon: <Video className="w-5 h-5 text-green-700" />,
+      title: "Video Aktivis Lingkungan",
+      desc: "Menampilkan para aktivis muda yang menyuarakan kampanye krisis iklim.",
+    },
+    {
+      time: "09.50 – 10.50",
       icon: <MessagesSquare className="w-5 h-5 text-green-700" />,
-      title: "Diskusi Panel Interaktif",
-      desc: "Dialog inspiratif antara narasumber dan peserta seputar aksi nyata untuk bumi.",
+      title: "Diskusi Panel",
+      desc: "Diskusi panel dua pakar, mahasiswa aktivis lingkungan, dan moderator.",
     },
     {
-      time: "10.40",
+      time: "10.50 – 11.00",
+      icon: <Mic className="w-5 h-5 text-green-700" />,
+      title: "Monolog (Mengenai Krisis Iklim)",
+      desc: "Monolog reflektif mengenai dampak dan urgensi aksi nyata terhadap krisis iklim.",
+    },
+    {
+      time: "11.00 – 11.30",
       icon: <Music className="w-5 h-5 text-green-700" />,
-      title: "Monolog & Penampilan Musik",
-      desc: "Pertunjukan seni bertema bumi dari komunitas muda kreatif.",
+      title: "Penampilan Musik",
+      desc: "Persembahan musik bertema bumi dan kepedulian lingkungan.",
     },
     {
-      time: "11.00",
+      time: "11.30 – 11.40",
       icon: <Leaf className="w-5 h-5 text-green-700" />,
-      title: "Deklarasi Komitmen Mahasiswa",
-      desc: "Penandatanganan komitmen hijau oleh peserta dan panitia.",
+      title: "Deklarasi Mahasiswa",
+      desc: "Mahasiswa bersama-sama menyatakan komitmen menjaga bumi, dipimpin salah satu ketua BEM.",
     },
     {
-      time: "11.10",
+      time: "11.40 – 11.50",
       icon: <Megaphone className="w-5 h-5 text-green-700" />,
-      title: "Promo Run for Roots 2025",
-      desc: "Pemaparan singkat dan ajakan ikut serta di kegiatan lari & tanam pohon.",
+      title: "Promosi Event Run for Roots",
+      desc: "Promosi kegiatan ‘Run for Roots’ disertai pemutaran video singkat.",
     },
     {
-      time: "11.30",
+      time: "11.50 – 11.55",
+      icon: <ScrollText className="w-5 h-5 text-green-700" />,
+      title: "Do’a Bersama",
+      desc: "Menutup acara dengan doa dan harapan kebaikan untuk bumi.",
+    },
+    {
+      time: "11.55 – 12.00",
       icon: <Camera className="w-5 h-5 text-green-700" />,
-      title: "Foto Bersama & Penutupan",
-      desc: "Momen kebersamaan seluruh peserta, panitia, dan narasumber.",
+      title: "Foto Bersama",
+      desc: "Foto bersama seluruh peserta, panitia, dan narasumber.",
+    },
+    {
+      time: "12.00 – 12.05",
+      icon: <Leaf className="w-5 h-5 text-green-700" />,
+      title: "Penutupan",
+      desc: "Ucapan terima kasih dan penutupan resmi acara.",
     },
   ]
 
   return (
     <section id="susunan-acara" className="py-20 bg-gradient-to-b from-white to-green-50">
       <div className="container mx-auto px-6 md:px-12">
-        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,9 +133,7 @@ export default function TimelineSection() {
           </p>
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative max-w-3xl mx-auto">
-          {/* Vertical Line */}
           <div className="absolute left-4 top-0 bottom-0 w-1 bg-green-200 rounded-full md:left-1/2 md:-translate-x-1/2"></div>
 
           <div className="space-y-10">
@@ -95,20 +142,18 @@ export default function TimelineSection() {
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
                 viewport={{ once: true }}
                 className={`relative flex items-start gap-4 md:gap-8 ${
                   idx % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""
                 }`}
               >
-                {/* Icon + Dot */}
                 <div
                   className={`absolute left-4 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center bg-white border-4 border-green-500 rounded-full w-10 h-10 shadow-md hover:scale-110 transition-transform`}
                 >
                   {item.icon}
                 </div>
 
-                {/* Content */}
                 <div
                   className={`ml-14 md:w-5/12 ${
                     idx % 2 === 0 ? "md:ml-0 md:pr-8" : "md:pl-8"
